@@ -1,0 +1,39 @@
+/*
+Error: Invalid CSS after "...lude mat-core()": expected selector or at-rule, was "$custom-primary..."
+        on line 4 of material-theme.scss
+
+1: // ANGULAR MATERIAL STYLE !@#!@#
+2: @import '~@angular/material/theming';
+3: @include mat-core()
+4: $custom-primary: mat-palette($mat-deep-purple,200);
+5: $custom-accent: mat-palette($mat-deep-purple,800);
+6: 
+7: $custom-theme: mat-light-theme($custom-primary,$custom-accent);
+8: 
+9: @include angular-material-theme($custom-theme)
+
+Backtrace:
+material-theme.scss:4
+C:/Ruby25/lib/ruby/gems/2.5.0/gems/sass-3.6.0/lib/sass/scss/parser.rb:1278:in `expected'
+C:/Ruby25/lib/ruby/gems/2.5.0/gems/sass-3.6.0/lib/sass/scss/parser.rb:1208:in `expected'
+C:/Ruby25/lib/ruby/gems/2.5.0/gems/sass-3.6.0/lib/sass/scss/parser.rb:42:in `parse'
+C:/Ruby25/lib/ruby/gems/2.5.0/gems/sass-3.6.0/lib/sass/engine.rb:414:in `_to_tree'
+C:/Ruby25/lib/ruby/gems/2.5.0/gems/sass-3.6.0/lib/sass/engine.rb:389:in `_render_with_sourcemap'
+C:/Ruby25/lib/ruby/gems/2.5.0/gems/sass-3.6.0/lib/sass/engine.rb:307:in `render_with_sourcemap'
+C:/Ruby25/lib/ruby/gems/2.5.0/gems/sass-3.6.0/lib/sass/plugin/compiler.rb:462:in `update_stylesheet'
+C:/Ruby25/lib/ruby/gems/2.5.0/gems/sass-3.6.0/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+C:/Ruby25/lib/ruby/gems/2.5.0/gems/sass-3.6.0/lib/sass/plugin/compiler.rb:209:in `each'
+C:/Ruby25/lib/ruby/gems/2.5.0/gems/sass-3.6.0/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+C:/Ruby25/lib/ruby/gems/2.5.0/gems/sass-3.6.0/lib/sass/plugin.rb:82:in `update_stylesheets'
+C:/Ruby25/lib/ruby/gems/2.5.0/gems/sass-3.6.0/lib/sass/exec/sass_scss.rb:338:in `watch_or_update'
+C:/Ruby25/lib/ruby/gems/2.5.0/gems/sass-3.6.0/lib/sass/exec/sass_scss.rb:51:in `process_result'
+C:/Ruby25/lib/ruby/gems/2.5.0/gems/sass-3.6.0/lib/sass/exec/base.rb:50:in `parse'
+C:/Ruby25/lib/ruby/gems/2.5.0/gems/sass-3.6.0/lib/sass/exec/base.rb:18:in `parse!'
+C:/Ruby25/lib/ruby/gems/2.5.0/gems/sass-3.6.0/bin/scss:13:in `<top (required)>'
+C:/Ruby25/bin/scss:23:in `load'
+C:/Ruby25/bin/scss:23:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Invalid CSS after \"...lude mat-core()\": expected selector or at-rule, was \"$custom-primary...\"\A         on line 4 of material-theme.scss\A \A 1: // ANGULAR MATERIAL STYLE !@#!@#\A 2: @import '~@angular/material/theming';\A 3: @include mat-core()\A 4: $custom-primary: mat-palette($mat-deep-purple,200);\A 5: $custom-accent: mat-palette($mat-deep-purple,800);\A 6: \A 7: $custom-theme: mat-light-theme($custom-primary,$custom-accent);\A 8: \A 9: @include angular-material-theme($custom-theme)"; }
