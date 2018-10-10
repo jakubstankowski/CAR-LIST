@@ -1,0 +1,78 @@
+.example-header-image {
+  background-image: url('https://st.motortrend.com/uploads/sites/10/2016/05/2016-audi-rs7-hatchback-angular-front-2.png');
+  background-size: cover;
+}
+
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.mat-card-avatar{
+  width: 148px !important;
+  height: 122px !important;
+  border-radius: 0 !important;
+}
+
+.mat-card{
+  padding: 16px 16px !important;
+}
+
+.mat-display-1{
+
+}
+
+mat-card-actions{
+  padding: 0 16px 16px !important;
+}
+
+.carTitle{
+  font: 400 2em Roboto,"Helvetica Neue",sans-serif;
+}
+
+
+ul{
+  list-style: none;
+  margin-right: 16px;
+}
+
+.example-card{
+  margin-top: 16px !important;
+  margin-left: 16px !important;
+  margin-right: 16px !important;
+}
+
+.carInfo{
+  margin-left: 2%;
+  color: #3F4447;
+}
+
+.carPrice{
+  color: #3A739E;
+  margin-top: 20px;
+}
+
+.carInfoPrice{
+  display: none;
+}
+
+@media only screen and (max-width: 750px) {
+  .carPrice{
+    font: 400 0.7em Roboto,"Helvetica Neue",sans-serif;
+    margin-top: 15px;
+  }
+
+
+}
+@media only screen and (max-width: 650px) {
+  .carPrice{
+    display: none;
+  }
+
+  .carInfoPrice{
+    display: inline;
+    color: #3A739E;
+  }
+
+
+}

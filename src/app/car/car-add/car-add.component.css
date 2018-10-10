@@ -1,0 +1,56 @@
+.addCarInput{
+  margin: 5px;
+}
+.dialogTitle{
+  text-align: center;
+  color: #3F4447;
+}
+
+.mat-typography{
+  text-align: center;
+
+}
+
+
+.example-full-width{
+  text-align: center;
+
+}
+
+.descriptionInput{
+  height: 40px !important;
+}
+
+.phoneInput{
+  margin: 5px;
+}
+
+.priceInputMobile{
+  display: none;
+}
+.phoneInputMobile{
+  display: none;
+}
+
+@media only screen and (max-width: 750px) {
+  .phoneInput{
+    display: none;
+
+  }
+
+  .priceInput{
+    display: none;
+  }
+
+  .phoneInputMobile{
+    display: block;
+  }
+
+  .priceInputMobile{
+    display: block;
+  }
+
+
+}
+
+

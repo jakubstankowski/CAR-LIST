@@ -1,0 +1,63 @@
+<h2 mat-dialog-title class="dialogTitle">ADD NEW CAR</h2>
+<mat-dialog-content  align="center" class="mat-typography">
+
+
+  <mat-form-field class="addCarInput"  hintLabel="Max 10 characters">
+    <input matInput #input maxlength="10" placeholder="BRAND">
+    <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+  </mat-form-field>
+  <mat-form-field class="addCarInput"  hintLabel="Max 10 characters">
+    <input matInput #input maxlength="10" placeholder="MODEL">
+    <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+  </mat-form-field>
+
+
+  <mat-form-field class="addCarInput">
+    <input matInput placeholder="YEAR" type="number" class="example-right-align">
+
+  </mat-form-field>
+  <mat-form-field class="addCarInput">
+    <input matInput placeholder="CAPACITY ENGINE" type="number" class="example-right-align">
+  </mat-form-field>
+  <mat-form-field class="addCarInput">
+    <input matInput placeholder="MILEAGE" type="number" class="example-right-align">
+  </mat-form-field>
+
+  <mat-form-field class="priceInput" >
+    <input  matInput placeholder="PRICE" type="number" class="example-right-align">
+    <span matPrefix>$&nbsp;</span>
+    <span matSuffix>.00</span>
+  </mat-form-field>
+  <mat-form-field class="phoneInput">
+      <span matPrefix>+48 &nbsp;</span>
+      <input type="tel" matInput placeholder="TELEPHONE">
+      <mat-icon matSuffix>mode_edit</mat-icon>
+  </mat-form-field>
+
+  <div class="button-row"> <button mat-button color="primary" mat-mini-fab (click)="imgFileInput.click()"><mat-icon>add_a_photo</mat-icon></button> <input hidden type="file" #imgFileInput/> </div>
+
+
+  <mat-form-field class="example-full-width">
+    <textarea class="descriptionInput" matInput placeholder="DESCRIPTION"></textarea>
+  </mat-form-field>
+
+  <mat-form-field class="priceInputMobile" >
+    <input  matInput placeholder="PRICE" type="number" class="example-right-align">
+    <span matPrefix>$&nbsp;</span>
+    <span matSuffix>.00</span>
+  </mat-form-field>
+
+  <mat-form-field class="phoneInputMobile">
+    <span matPrefix>+48 &nbsp;</span>
+    <input type="tel" matInput placeholder="TELEPHONE">
+    <mat-icon matSuffix>mode_edit</mat-icon>
+  </mat-form-field>
+
+</mat-dialog-content>
+<mat-dialog-content class="mat-typography">
+
+</mat-dialog-content>
+<mat-dialog-actions  align="center">
+  <button mat-button>ADD</button>
+  <button mat-button mat-dialog-close>CANCEL</button>
+</mat-dialog-actions>

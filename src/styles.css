@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+/*// GŁÓWNE KOLORY :
+// 1 - BIAŁY
+// 2 - #3F4447 (CZARNO SZARY), KOLOR STANOSIOWY
+// 3 - #3A739E (NIEBIESKI CZY CHUJ WIE JAKI), KOLOR STANOSIOWY
+// 4 - #16a085 NA PRÓBE ZIELONY
+// 5 - #50586b - NA PRÓBE CIEMNY DRUGI*/
+
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body{
+  background-color: #3F4447;
+  margin: 0;
+}
+
+
