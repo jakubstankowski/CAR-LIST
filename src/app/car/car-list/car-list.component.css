@@ -74,5 +74,13 @@ ul{
     color: #3A739E;
   }
 
+  .carNameMobile{
+    display: block;
+  }
+
+  .carInfo{
+    margin: 0;
+  }
+
 
 }

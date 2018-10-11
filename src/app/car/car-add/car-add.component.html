@@ -1,63 +1,102 @@
 <h2 mat-dialog-title class="dialogTitle">ADD NEW CAR</h2>
+<!--
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+  <input name="first" ngModel required #first="ngModel">
+  <input name="last" ngModel>
+  <button>Submit</button>
+</form>
+
+<p>First name value: {{ first.value }}</p>
+<p>First name valid: {{ first.valid }}</p>
+<p>Form value: {{ f.value | json }}</p>
+<p>Form valid: {{ f.valid }}</p>
+-->
+
+
 <mat-dialog-content  align="center" class="mat-typography">
 
-  <mat-form-field class="addCarInput"  hintLabel="Max 10 characters">
-    <input matInput #input maxlength="10" placeholder="BRAND">
-    <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
-  </mat-form-field>
 
-  <mat-form-field class="addCarInput"  hintLabel="Max 10 characters">
-    <input matInput #input maxlength="10" placeholder="MODEL">
-    <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
-  </mat-form-field>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)"  novalidate>
+        <mat-form-field class="addCarInput"  >
+          <input  name="brand" ngModel required #brand = 'ngModel' matInput  maxlength="10" placeholder="BRAND">
+        </mat-form-field>
 
-  <mat-form-field class="addCarInput">
-    <input matInput placeholder="YEAR" type="number" class="example-right-align">
-  </mat-form-field>
+        <mat-form-field class="addCarInput"  >
+          <input  name="model" ngModel required #model='ngModel' matInput  maxlength="10" placeholder="MODEL">
+        </mat-form-field>
 
-  <mat-form-field class="addCarInput">
-    <input matInput placeholder="CAPACITY ENGINE" type="number" class="example-right-align">
-  </mat-form-field>
+        <mat-form-field class="addCarInput">
+          <input name="year" ngModel required #year = 'ngModel' matInput placeholder="YEAR" type="number" class="example-right-align">
+        </mat-form-field>
 
-  <mat-form-field class="addCarInput">
-    <input matInput placeholder="MILEAGE" type="number" class="example-right-align">
-  </mat-form-field>
+        <mat-form-field class="addCarInput">
+          <input name="mileage" ngModel required #mileage = 'ngModel' matInput placeholder="MILEAGE" type="number" class="example-right-align">
+        </mat-form-field>
 
-  <mat-form-field class="priceInput" >
-    <input  matInput placeholder="PRICE" type="number" class="example-right-align">
-    <span matPrefix>$&nbsp;</span>
-    <span matSuffix>.00</span>
-  </mat-form-field>
+        <mat-form-field class="priceInput" >
+          <input name="price" ngModel required #price = 'ngModel' matInput placeholder="PRICE" type="number" class="example-right-align">
+          <span matPrefix>$&nbsp;</span>
+          <span matSuffix>.00</span>
+        </mat-form-field>
 
-  <mat-form-field class="phoneInput">
-      <span matPrefix>+48 &nbsp;</span>
-      <input type="tel" matInput placeholder="TELEPHONE">
-      <mat-icon matSuffix>mode_edit</mat-icon>
-  </mat-form-field>
+        <mat-form-field class="phoneInput">
+            <span matPrefix>+48 &nbsp;</span>
+            <input name="telephone" ngModel required #telephone = 'ngModel' type="tel" matInput placeholder="TELEPHONE">
+            <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
 
-  <!-- IMAGE INPUT -->
-  <div class="button-row"> <button mat-button color="primary" mat-mini-fab (click)="imgFileInput.click()"><mat-icon>add_a_photo</mat-icon></button> <input hidden type="file" #imgFileInput/> </div>
+        <!-- IMAGE INPUT -->
+        <div class="button-row"> <button class="fileInput" mat-button color="primary" mat-mini-fab (click)="imgFileInput.click()"><mat-icon>add_a_photo</mat-icon></button> <input hidden type="file" #imgFileInput/> </div>
 
-  <mat-form-field class="example-full-width">
-    <textarea class="descriptionInput" matInput placeholder="DESCRIPTION"></textarea>
-  </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <textarea  name="description" ngModel required #description = 'ngModel' class="descriptionInput" matInput placeholder="DESCRIPTION"></textarea>
+        </mat-form-field>
 
-  <mat-form-field class="priceInputMobile" >
-    <input  matInput placeholder="PRICE" type="number" class="example-right-align">
-    <span matPrefix>$&nbsp;</span>
-    <span matSuffix>.00</span>
-  </mat-form-field>
+        <mat-form-field class="priceInputMobile" >
+          <input  name="price" ngModel required #price = 'ngModel' matInput placeholder="PRICE" type="number" class="example-right-align">
+          <span matPrefix>$&nbsp;</span>
+          <span matSuffix>.00</span>
+        </mat-form-field>
 
-  <mat-form-field class="phoneInputMobile">
-    <span matPrefix>+48 &nbsp;</span>
-    <input type="tel" matInput placeholder="TELEPHONE">
-    <mat-icon matSuffix>mode_edit</mat-icon>
-  </mat-form-field>
+        <mat-form-field class="phoneInputMobile">
+          <span matPrefix>+48 &nbsp;</span>
+          <input name="telephone" ngModel required #telephone = 'ngModel' type="tel" matInput placeholder="TELEPHONE">
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
 
-</mat-dialog-content>
+
+
 
 <mat-dialog-actions  align="center">
-  <button mat-button>ADD</button>
-  <button mat-button mat-dialog-close>CANCEL</button>
+  <button mat-button
+          [disabled]="
+          brand.invalid ||
+          model.invalid ||
+          year.invalid ||
+          mileage.invalid ||
+          price.invalid ||
+          telephone.invalid ||
+          description.invalid"
+          type="submit"
+
+  >
+
+    ADD
+
+  </button>
+
+  <button mat-button
+          mat-dialog-close>
+
+    CANCEL
+
+  </button>
+
+
 </mat-dialog-actions>
+
+  </form>
+</mat-dialog-content>
+
+
 <!-- TEST COMMENT 2 -->
