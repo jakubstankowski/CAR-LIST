@@ -1,22 +1,38 @@
-import { Component, OnInit } from '@angular/core';
-import {AppService} from '../../app.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Car} from '../car.model';
+import {CarService} from '../car.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-car-list',
   templateUrl: './car-list.component.html',
   styleUrls: ['./car-list.component.css']
 })
-export class CarListComponent implements OnInit {
+export class CarListComponent implements OnInit, OnDestroy {
 
-  constructor(public appService: AppService) {
+  cars: Car[] = [];
+  private carsSub: Subscription;
 
-    console.log('car: ', this.appService.car);
+  constructor(public carService: CarService) {
+
   }
 
 
 
   ngOnInit() {
+    this.cars = this.carService.getCars();
+    this.carsSub = this.carService.getCarUpdateListener()
+      .subscribe((cars: Car[]) => {
+        this.cars= cars;
+      });
+  }
+
+  ngOnDestroy(){
+    this.carsSub.unsubscribe();
 
   }
+
+
+
 
 }

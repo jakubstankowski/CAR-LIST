@@ -1,7 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA, MatSnackBar} from '@angular/material';
-import {AppService} from '../../app.service';
+
 import { NgForm } from '@angular/forms';
+import {CarService} from '../car.service';
 
 
 
@@ -12,20 +13,28 @@ import { NgForm } from '@angular/forms';
 })
 export class CarAddComponent implements OnInit {
 
-  constructor(public appService: AppService, public dialogRef: MatDialogRef<CarAddComponent>,
+  constructor( public carService: CarService, public dialogRef: MatDialogRef<CarAddComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) {}
 
 
 
-  onSubmit(f: NgForm) {
-    console.log(f.value);  // { first: '', last: '' }
-    console.log(f.valid);  // false
-
-    this.appService.car.push(f.value);
-
-    console.log('GET VALUE : ', this.appService.car);
+  onSubmit(form: NgForm) {
+    console.log(form.value);  // { first: '', last: '' }
+    console.log(form.valid);  // false
 
 
+
+   this.carService.addPost(
+     form.value.name,
+     form.value.model,
+     form.value.year,
+     form.value.mileage,
+     form.value.description,
+     form.value.price,
+     form.value.telephone);
+
+   this.dialogRef.close();
+   form.resetForm();
 
   }
 

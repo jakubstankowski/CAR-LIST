@@ -1,32 +1,47 @@
-<mat-card   class="example-card">
 
-  <mat-card-header>
 
-    <div style="width: 100px" mat-card-avatar class="example-header-image"></div>
+<div class="carList" *ngIf="cars.length > 0; else carListEmpty" >
+  <mat-card  *ngFor="let car of cars"  class="example-card">
 
-    <div class="carInfo">
-      <mat-card-title>
-        <h1 class="carName">polonez</h1>
-        <h2 class="carNameMobile" style="display: none">POLONEZ CARO</h2>
-      </mat-card-title>
-      <mat-card-title>
-        <h2 class="carInfoPrice">1223 PLN</h2>
-      </mat-card-title>
-      <mat-card-subtitle>
-        ID: 1231231
-      </mat-card-subtitle>
+    <mat-card-header>
 
-    </div>
-    <span class="example-spacer"></span>
+      <div style="width: 100px" mat-card-avatar class="example-header-image"></div>
 
-    <div class="carPrice">
-      <h1>123132 PLN</h1>
-    </div>
+      <div class="carInfo">
+        <mat-card-title>
+          <h1 class="carName">{{ car.name + ' ' + car.model}}</h1>
+          <h2 class="carNameMobile" style="display: none">{{car.name + ' ' + car.model}}</h2>
+        </mat-card-title>
+        <mat-card-title>
+          <h2 class="carInfoPrice">{{car.price + ' ' + 'PLN'}}</h2>
+        </mat-card-title>
+        <mat-card-subtitle>
+          ID: 1231231
+        </mat-card-subtitle>
 
-  </mat-card-header>
-  <mat-card-actions style="">
-    <button  color="accent" mat-button>VIEW</button>
-    <button  color="accent" mat-button>EDIT</button>
-    <button  color="accent"  mat-button>DELETE</button>
-  </mat-card-actions>
-</mat-card>
+      </div>
+      <span class="example-spacer"></span>
+
+      <div class="carPrice">
+        <h1>{{car.price + ' ' + 'PLN'}}</h1>
+      </div>
+
+    </mat-card-header>
+    <mat-card-actions style="">
+      <button  color="accent" mat-button>VIEW</button>
+      <button  color="accent" mat-button>EDIT</button>
+      <button  color="accent"  mat-button>DELETE</button>
+    </mat-card-actions>
+  </mat-card>
+
+
+
+</div>
+
+<ng-template #carListEmpty>
+  <mat-card  class="example-card">
+    <h3 class="carListEmpty">
+      CAR LIST EMPTY - ADD A NEW CAR !
+    </h3>
+  </mat-card>
+</ng-template>

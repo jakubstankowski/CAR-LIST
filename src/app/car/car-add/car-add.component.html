@@ -16,10 +16,10 @@
 <mat-dialog-content  align="center" class="mat-typography">
 
 
-  <form #f="ngForm" (ngSubmit)="onSubmit(f)"  novalidate>
+  <form #form="ngForm" (submit)="onSubmit(form)"  novalidate>
         <mat-form-field class="addCarInput"  >
-          <input  name="brand" ngModel required #brand = 'ngModel' matInput  maxlength="10" placeholder="BRAND">
-          <mat-error *ngIf="brand.invalid">BRAND IS REQUIRED</mat-error>
+          <input  name="name" ngModel required #name = 'ngModel' matInput  maxlength="10" placeholder="NAME">
+          <mat-error *ngIf="name.invalid">NAME IS REQUIRED</mat-error>
         </mat-form-field>
 
         <mat-form-field class="addCarInput"  >
@@ -76,36 +76,42 @@
 
 
 
-<mat-dialog-actions  align="center">
-  <button mat-button
-          [disabled]="
-          brand.invalid ||
-          model.invalid ||
-          year.invalid ||
-          mileage.invalid ||
-          price.invalid ||
-          telephone.invalid ||
-          description.invalid"
-          type="submit"
+        <mat-dialog-actions  align="center">
+          <!--<button
+            mat-button
+            type="submit"
+          >
+            TEST ADD
+          </button>-->
+          <button mat-button
+                  [disabled]="
+                  name.invalid ||
+                  model.invalid ||
+                  year.invalid ||
+                  mileage.invalid ||
+                  price.invalid ||
+                  telephone.invalid ||
+                  description.invalid"
+                  type="submit"
+          >
+            ADD
+          </button>
 
-  >
+          <button
+            mat-button
+            mat-dialog-close
+          >
+            CANCEL
 
-    ADD
-
-  </button>
-
-  <button mat-button
-          mat-dialog-close>
-
-    CANCEL
-
-  </button>
+          </button>
 
 
-</mat-dialog-actions>
+        </mat-dialog-actions>
 
   </form>
 </mat-dialog-content>
+
+
 
 
 <!-- TEST COMMENT 2 -->
