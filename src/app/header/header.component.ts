@@ -16,8 +16,9 @@ export class HeaderComponent implements OnInit {
 
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(CarAddComponent, {
-
+    const dialogRef = this.dialog.open(CarAddComponent,
+      {
+    disableClose: true,
     });
 
     dialogRef.afterClosed().subscribe(result => {
