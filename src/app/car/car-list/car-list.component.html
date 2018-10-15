@@ -13,7 +13,7 @@
           <h2 class="carNameMobile" style="display: none">{{car.name + ' ' + car.model}}</h2>
         </mat-card-title>
         <mat-card-title>
-          <h2 class="carInfoPrice">{{car.price + ' ' + 'PLN'}}</h2>
+          <h2 class="carPriceMobile">{{car.price + ' ' + 'PLN'}}</h2>
         </mat-card-title>
         <mat-card-subtitle>
           ID: 1231231
@@ -28,7 +28,7 @@
 
     </mat-card-header>
     <mat-card-actions style="">
-      <button  color="accent" mat-button>VIEW</button>
+      <button routerLink="/car" color="accent" mat-button>VIEW</button>
       <button  color="accent" mat-button>EDIT</button>
       <button  color="accent"  mat-button>DELETE</button>
     </mat-card-actions>

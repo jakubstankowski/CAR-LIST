@@ -17,7 +17,7 @@ export class CarService {
   private carsUpdated = new Subject<Car[]>();
 
   getCars(){
-    return this.cars;
+    return [...this.cars];
   }
 
   getCarUpdateListener() {
@@ -31,6 +31,8 @@ export class CarService {
           description: string,
           price: number,
           telephone: number)
+
+
   {
 
    console.log(
@@ -57,6 +59,8 @@ export class CarService {
    this.cars.push(car);
 
    console.log('CAR NAME  : ', this.cars);
+
+   this.carsUpdated.next([...this.cars]);
 
   }
 }

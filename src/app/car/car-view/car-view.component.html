@@ -1,0 +1,45 @@
+
+
+
+
+<mat-card class="car-card">
+  <mat-card-header>
+
+
+        <mat-card-title>
+          <h1 class="carName">AUDI A4</h1>
+        </mat-card-title>
+        <mat-card-subtitle>
+          MILEAGE: 1000 KM
+        </mat-card-subtitle>
+        <mat-card-subtitle>
+          YEAR: 2019
+        </mat-card-subtitle>
+        <span class="example-spacer"></span>
+
+          <div class="carViewPrice">
+            <h1>15000 PLN</h1>
+          </div>
+
+
+  </mat-card-header>
+
+
+  <img mat-card-image src="http://pngimg.com/uploads/mercedes/mercedes_PNG1880.png" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <p style="text-align: center">
+      MERCEDES BENZ C120 <br>
+      ZE SZWAJCARII KOSA JAK SKURWYSYN <br>
+      SZWAJCAR POD KOCEM TRZYMAŁ, PŁAKAŁ JAK SPRZEDAWAŁ ! <br>
+    </p>
+  </mat-card-content>
+  <mat-card-actions align="center">
+    <button  color="primary" style="margin:20px" *ngIf="hideButton === false" (click)="showTelephone()" mat-button>SHOW TELEPHONE</button>
+    <div *ngIf="showNumber === true">
+      <div class="carViewPrice">
+        <h3>TELEPHONE : 666 923 823 </h3>
+      </div>
+    </div>
+
+  </mat-card-actions>
+</mat-card>

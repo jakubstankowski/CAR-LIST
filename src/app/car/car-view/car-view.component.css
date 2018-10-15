@@ -1,0 +1,33 @@
+.car-card{
+  margin: 16px !important;
+}
+
+.carName{
+  font-size: 2em !important;
+  color: #3F4447;
+}
+
+.carViewPrice{
+  color: #3A739E;
+
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+@media only screen and (max-width: 750px) {
+  .carViewPrice{
+    font: 400 0.7em Roboto,"Helvetica Neue",sans-serif;
+  }
+
+  .carName{
+    text-align: center;
+  }
+
+  .carPrice{
+    text-align: center;
+  }
+
+
+}
