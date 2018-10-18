@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Car} from '../car.model';
+import {CarService} from '../car.service';
 
 @Component({
   selector: 'app-car-view',
@@ -9,14 +11,22 @@ export class CarViewComponent implements OnInit {
 
   showNumber = false;
   hideButton = false;
-  constructor() { }
+
+  constructor(public carService: CarService) {
+    console.log('CARS : ', carService.cars);
+  }
+
+
+
 
 
   showTelephone(){
     this.showNumber = true;
     this.hideButton = true;
-
   }
+
+
+
 
   ngOnInit() {
   }

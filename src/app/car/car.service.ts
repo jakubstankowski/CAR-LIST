@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import {Car} from  './car.model';
 import { Subject } from 'rxjs';
-
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -11,56 +11,54 @@ import { Subject } from 'rxjs';
 })
 export class CarService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  private cars: Car[] = [];
+  public cars: Car[] = [];
   private carsUpdated = new Subject<Car[]>();
 
   getCars(){
-    return [...this.cars];
+
+    this.http
+      .get<{ message: string; cars: Car[] }>(
+        "http://localhost:3000/api/cars"
+      )
+      .subscribe(postData => {
+        this.cars = postData.cars;
+        this.carsUpdated.next([...this.cars]);
+      });
   }
 
   getCarUpdateListener() {
     return this.carsUpdated.asObservable();
   }
 
-  addPost(name: string,
-          model: string,
-          year: number,
-          mileage: number,
-          description: string,
-          price: number,
-          telephone: number)
+  addCar(name: string, model: string, year: number, mileage: number, description: string, price: number, telephone: number) {
+    console.log('name: ', name, 'model: ', model, 'year : ', year, 'mileage : ', mileage, 'description:', description, 'price : ', price, 'telephone', telephone);
+
+    const car: Car ={id: null, name: name, model: model, year: year, mileage: mileage, description: description, price: price, telephone: telephone};
 
 
-  {
+    this.http
+      .post<{ message: string }>("http://localhost:3000/api/cars", car)
+      .subscribe(responseData => {
+        console.log(responseData.message);
+        this.cars.push(car);
 
-   console.log(
-     'name: ', name,
-     'model: ', model,
-     'year : ', year,
-     'mileage : ', mileage,
-     'description:', description,
-     'price : ', price,
-     'telephone', telephone
-   );
+        console.log('CAR : ', car);
 
+        this.carsUpdated.next([...this.cars]);
+      });
 
-   const car: Car ={
-     name: name,
-     model: model,
-     year: year,
-     mileage: mileage,
-     description: description,
-     price: price,
-     telephone: telephone
-   };
-
-   this.cars.push(car);
-
-   console.log('CAR NAME  : ', this.cars);
 
    this.carsUpdated.next([...this.cars]);
 
+
   }
+
+
+
+
+
 }
+
+

@@ -27,18 +27,21 @@
 
   <img mat-card-image src="http://pngimg.com/uploads/mercedes/mercedes_PNG1880.png" alt="Photo of a Shiba Inu">
   <mat-card-content>
-    <p style="text-align: center">
-      MERCEDES BENZ C120 <br>
-      ZE SZWAJCARII KOSA JAK SKURWYSYN <br>
-      SZWAJCAR POD KOCEM TRZYMAŁ, PŁAKAŁ JAK SPRZEDAWAŁ ! <br>
-    </p>
+    <h2 class="mat-h2">
+      MERCEDES 1.6 LPG<br>
+      KOSA JAK SKURWYSYN<br>
+      BOGATE WYPOSAŻENIE <br>
+
+    </h2>
+
+
   </mat-card-content>
   <mat-card-actions align="center">
-    <button  color="primary" style="margin:20px" *ngIf="hideButton === false" (click)="showTelephone()" mat-button>SHOW TELEPHONE</button>
+    <button  color="accent" style="margin:20px" *ngIf="hideButton === false" (click)="showTelephone()" mat-button>SHOW TELEPHONE</button>
     <div *ngIf="showNumber === true">
-      <div class="carViewPrice">
-        <h3>TELEPHONE : 666 923 823 </h3>
-      </div>
+      <h2 class="mat-h2">
+       666 923 823
+      </h2>
     </div>
 
   </mat-card-actions>

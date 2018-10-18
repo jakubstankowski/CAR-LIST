@@ -24,7 +24,7 @@ export class CarAddComponent implements OnInit {
 
 
 
-   this.carService.addPost(
+   this.carService.addCar(
      form.value.name,
      form.value.model,
      form.value.year,

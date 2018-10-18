@@ -16,6 +16,13 @@
   flex: 1 1 auto;
 }
 
+
+.mat-h2{
+  padding: 2%;
+  color: #3F4447;
+  text-align: center;
+}
+
 @media only screen and (max-width: 750px) {
   .carViewPrice{
     font: 400 0.7em Roboto,"Helvetica Neue",sans-serif;
@@ -27,6 +34,7 @@
 
   .carPrice{
     text-align: center;
+    margin-top: 15px !important;
   }
 
 

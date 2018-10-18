@@ -13,14 +13,12 @@ export class CarListComponent implements OnInit, OnDestroy {
   cars: Car[] = [];
   private carsSub: Subscription;
 
-  constructor(public carService: CarService) {
-
-  }
-
-
+  constructor(public carService: CarService) {}
 
   ngOnInit() {
-    this.cars = this.carService.getCars();
+   /* this.cars = this.carService.getCars();*/
+
+    this.carService.getCars();
     this.carsSub = this.carService.getCarUpdateListener()
       .subscribe((cars: Car[]) => {
         console.log('SUBSCRIBE DONE !@#!');
