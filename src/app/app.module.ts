@@ -11,14 +11,18 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxSpinnerModule } from 'ngx-spinner';
+
+
+
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { CarListComponent } from './car/car-list/car-list.component';
 import { CarAddComponent } from './car/car-add/car-add.component';
 import { CarViewComponent } from './car/car-view/car-view.component';
+import { CarDeleteDialogComponent } from './material-dialog/car-delete-dialog/car-delete-dialog.component';
 
 
 
@@ -38,7 +42,8 @@ const appRoutes: Routes = [
     HeaderComponent,
     CarListComponent,
     CarAddComponent,
-    CarViewComponent
+    CarViewComponent,
+    CarDeleteDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -54,11 +59,13 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
-    HttpClientModule
+    HttpClientModule,
+    NgxSpinnerModule
   ],
 
   entryComponents: [
-    CarAddComponent
+    CarAddComponent,
+    CarDeleteDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

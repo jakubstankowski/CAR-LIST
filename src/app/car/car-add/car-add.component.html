@@ -1,3 +1,5 @@
+
+
 <h2 mat-dialog-title class="dialogTitle">ADD NEW CAR</h2>
 <!--
 <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
@@ -77,13 +79,13 @@
 
 
         <mat-dialog-actions  align="center">
-          <button
+          <!--<button
             mat-button
             type="submit"
           >
             TEST ADD
-          </button>
-          <!--<button mat-button
+          </button>-->
+          <button mat-button
                   [disabled]="
                   name.invalid ||
                   model.invalid ||
@@ -93,9 +95,10 @@
                   telephone.invalid ||
                   description.invalid"
                   type="submit"
+                  (click)="showSpinnerAfterAdd()"
           >
             ADD
-          </button>-->
+          </button>
 
           <button
             mat-button

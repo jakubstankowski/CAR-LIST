@@ -30,6 +30,7 @@
     "express": "^4.16.4",
     "mongodb": "^3.1.8",
     "mongoose": "^5.3.4",
+    "ngx-spinner": "^6.1.2",
     "rxjs": "~6.2.0",
     "zone.js": "~0.8.26"
   },

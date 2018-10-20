@@ -58,11 +58,12 @@ app.post("/api/cars", (req, res, next) => {
 
   });
 
-
-  console.log('CAR: ', car);
-  car.save();
-  res.status(201).json({
-    message: "CAR added successfully"
+  car.save().then(addedCar => {
+    console.log('ADDED CAR : ', addedCar._id);
+    res.status(201).json({
+      message: "CAR added successfully",
+      carId: addedCar._id
+    });
   });
 
 });
@@ -79,6 +80,17 @@ app.get('/api/cars',(req, res, next) => {
   });
 
 });
+
+
+
+app.delete("/api/cars/:id", (req, res, next) => {
+  Car.deleteOne({ _id: req.params.id }).then(result => {
+    console.log('DELETE RESULT : ', result);
+    res.status(200).json({ message: "CAR deleted!" });
+  });
+});
+
+
 
 
 module.exports = app;

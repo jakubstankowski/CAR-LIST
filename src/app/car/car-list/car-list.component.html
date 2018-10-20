@@ -1,4 +1,13 @@
 
+<!-- NGX SPINNER PLACE -->
+<ngx-spinner
+  bdColor = "rgba(51, 51, 51, 0.8)"
+  size = "large"
+  color = "#ffffff"
+  type = "ball-clip-rotate"
+></ngx-spinner>
+
+
 
 <div class="carList" *ngIf="cars.length > 0; else carListEmpty" >
   <mat-card  *ngFor="let car of cars"  class="example-card">
@@ -30,7 +39,7 @@
     <mat-card-actions style="">
       <button routerLink="/car" color="accent" mat-button>VIEW</button>
       <button  color="accent" mat-button>EDIT</button>
-      <button  color="accent"  mat-button>DELETE</button>
+      <button  color="accent"  (click)="onDelete(car.id)" mat-button>DELETE</button>
     </mat-card-actions>
   </mat-card>
 
