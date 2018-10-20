@@ -1,14 +1,26 @@
-const express = require('express');
-const bodyParser  = require('body-parser');
-
-
-
-// MONGDO DB PASSWORD  : uIWp1zljJsD9y82g
+// MONGDO DB PASSWORD  : KvOnZlZH3Wj5tGS8
 //  MONGO DB LOGIN : standev
 
+const express = require('express');
+const bodyParser  = require('body-parser');
+const mongoose = require("mongoose");
 
-
+const Car = require("./models/car");
 const app = express();
+
+mongoose
+  .connect(
+    "mongodb+srv://standev:KvOnZlZH3Wj5tGS8@cluster0-rr3fg.gcp.mongodb.net/car-list?retryWrites=true"
+  )
+  .then(() => {
+    console.log("Connected to database!");
+  })
+  .catch(() => {
+    console.log("Connection failed!");
+  });
+
+
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -35,16 +47,23 @@ app.use((req, res, next) => {
 
 
 app.post("/api/cars", (req, res, next) => {
-  const car = req.body;
+  const car = new Car({
+    name: req.body.name,
+    model: req.body.model,
+    year: req.body.year,
+    mileage: req.body.mileage,
+    description: req.body.description,
+    price: req.body.price,
+    telephone: req.body.telephone
 
-  console.log('CAR FROM INPUT : ', car);
-
-  res.status(201).json({
-    message: 'CAR added successfully @!##@!#!@'
   });
 
-  next();
 
+  console.log('CAR: ', car);
+  car.save();
+  res.status(201).json({
+    message: "CAR added successfully"
+  });
 
 });
 
@@ -52,41 +71,12 @@ app.post("/api/cars", (req, res, next) => {
 
 app.get('/api/cars',(req, res, next) => {
 
-  const cars = [
-
-    {
-      id: '1',
-      name:'AUDI',
-      model:'A4',
-      price:'12000'
-    },
-    {
-      id: '2',
-      name:'POLONEZ ',
-      model:'CARO',
-      price:'12000'
-    },
-    {
-      id: '3',
-      name:'VW',
-      model:'GOLF',
-      price:'1000'
-    },
-    {
-      id: '3',
-      name:'polonez',
-      model:'caro',
-      price:'1000'
-    }
-
-
-
-
-  ];
-  res.json({
-   message: 'FROM JSON API :  ',
-   cars:cars,
- })
+  Car.find().then(data => {
+    res.status(200).json({
+      message: "Posts fetched successfully!",
+      cars: data
+    });
+  });
 
 });
 

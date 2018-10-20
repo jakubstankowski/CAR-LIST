@@ -41,17 +41,13 @@ export class CarService {
     this.http
       .post<{ message: string }>("http://localhost:3000/api/cars", car)
       .subscribe(responseData => {
-        console.log(responseData.message);
+        console.log('RESPONSE DATA TO POST FOR BACKEND :  ',responseData.message);
         this.cars.push(car);
 
         console.log('CAR : ', car);
 
         this.carsUpdated.next([...this.cars]);
       });
-
-
-   this.carsUpdated.next([...this.cars]);
-
 
   }
 
