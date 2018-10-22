@@ -26,8 +26,9 @@ export class CarService {
       .pipe(map((carData) => {
         return carData.cars.map(car => {
 
-          // @ts-ignore
+
           return {
+            // @ts-ignore
             id: car._id,
             name:car.name,
             model: car.model,
@@ -66,6 +67,11 @@ export class CarService {
         this.carsUpdated.next([...this.cars]);
       });
 
+  }
+
+
+  viewCar(carId: string){
+    console.log('CAR ID FROM SERVICE : ', carId);
   }
 
   deleteCar(carId: string) {

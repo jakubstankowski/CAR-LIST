@@ -25,7 +25,7 @@
           <h2 class="carPriceMobile">{{car.price + ' ' + 'PLN'}}</h2>
         </mat-card-title>
         <mat-card-subtitle>
-          ID: {{car.id}}
+          YEAR : {{car.year}}
         </mat-card-subtitle>
 
       </div>
@@ -37,7 +37,7 @@
 
     </mat-card-header>
     <mat-card-actions style="">
-      <button routerLink="/car" color="accent" mat-button>VIEW</button>
+      <button  (click)="onView(car.id)" color="accent" mat-button>VIEW</button>
       <button  color="accent" mat-button>EDIT</button>
       <button  color="accent"  (click)="onDelete(car.id)" mat-button>DELETE</button>
     </mat-card-actions>

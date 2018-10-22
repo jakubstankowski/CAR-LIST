@@ -23,6 +23,12 @@ export class CarListComponent implements OnInit, OnDestroy {
 
   constructor(public carService: CarService, public dialog: MatDialog, private  spinner: NgxSpinnerService) {}
 
+
+  onView(id){
+    console.log('KLIKNIET ID : ', id);
+    this.carService.viewCar(id);
+
+  }
   onDelete(id){
 
     const dialogRef = this.dialog.open(CarDeleteDialogComponent,

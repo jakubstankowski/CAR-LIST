@@ -81,6 +81,10 @@ app.get('/api/cars',(req, res, next) => {
 
 });
 
+app.get('/api/cars', (req, res, next)=>{
+  Car.findById()
+});
+
 
 
 app.delete("/api/cars/:id", (req, res, next) => {

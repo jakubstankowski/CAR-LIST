@@ -13,7 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
-
+import {ScrollDispatchModule} from '@angular/cdk/scrolling';
 
 
 
@@ -27,9 +27,10 @@ import { CarDeleteDialogComponent } from './material-dialog/car-delete-dialog/ca
 
 
 const appRoutes: Routes = [
-
   {path:'', component: CarListComponent},
   {path: 'car', component: CarViewComponent},
+  {path:'edit', component: CarAddComponent}
+
   /*{path:'wep', component: WepComponent, canActivate:[AuthGuard]}*/
 ];
 
@@ -60,7 +61,8 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    ScrollDispatchModule
   ],
 
   entryComponents: [
