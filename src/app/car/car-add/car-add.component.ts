@@ -4,6 +4,7 @@ import {MatDialogRef, MAT_DIALOG_DATA, MatSnackBar} from '@angular/material';
 import { NgForm } from '@angular/forms';
 import {CarService} from '../car.service';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {Router} from '@angular/router';
 
 
 
@@ -14,23 +15,12 @@ import {NgxSpinnerService} from 'ngx-spinner';
 })
 export class CarAddComponent implements OnInit {
 
-  constructor( public carService: CarService, public dialogRef: MatDialogRef<CarAddComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any, private  spinner: NgxSpinnerService) {}
-
-
-
-
-  showSpinnerAfterAdd(){
-    this.spinner.show();
-    setTimeout(() => {
-      this.spinner.hide();
-    }, 1000);
-  }
+  constructor( public carService: CarService, private  spinner: NgxSpinnerService, private router: Router,) {}
 
   onSubmit(form: NgForm) {
     setTimeout(() => {
       this.carService.addCar(form.value.name, form.value.model, form.value.year, form.value.mileage, form.value.description, form.value.price, form.value.telephone);
-      this.dialogRef.close();
+      this.router.navigate(['/']);
       form.resetForm();
     }, 1000);
   }

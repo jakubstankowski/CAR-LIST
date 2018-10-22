@@ -1,42 +1,39 @@
-.addCarInput{
-  margin: 5px;
-}
-.dialogTitle{
-  text-align: center;
-  color: #3F4447;
-}
-
-.mat-typography{
-  text-align: center;
-
-}
-
-.fileInput{
-  margin: 5px;
+mat-form-field,
+textarea {
+  width: 100% !important;
 }
 
 
-.example-full-width{
-  text-align: center;
+.add-car-title{
+  color:#3A739E;
+  font : 500 30px/40px Roboto, "Helvetica Neue", sans-serif
+
+}
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 51%;
+}
+
+.mat-card{
+  padding: 16px 16px !important;
+}
+
+.example-card{
+  margin: 16px 100px;
 
 }
 
-.descriptionInput{
-  height: 40px !important;
-}
-
-.phoneInput{
-  margin: 5px;
-}
-
-.priceInputMobile{
-  display: none;
-}
-.phoneInputMobile{
-  display: none;
-}
 
 @media only screen and (max-width: 750px) {
+
+  .example-card{
+    margin: 16px 16px;
+
+  }
   .phoneInput{
     display: none;
 
@@ -52,6 +49,16 @@
 
   .priceInputMobile{
     display: block;
+  }
+
+  .add-car-title{
+    color:#3A739E;
+    font : 500 20px/30px Roboto, "Helvetica Neue", sans-serif
+
+  }
+
+  mat-form-field mat-placeholder{
+    color: red
   }
 
 

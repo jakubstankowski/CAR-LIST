@@ -29,6 +29,7 @@ import { CarDeleteDialogComponent } from './material-dialog/car-delete-dialog/ca
 const appRoutes: Routes = [
   {path:'', component: CarListComponent},
   {path: 'car', component: CarViewComponent},
+  {path:'add', component: CarAddComponent},
   {path:'edit', component: CarAddComponent}
 
   /*{path:'wep', component: WepComponent, canActivate:[AuthGuard]}*/
@@ -66,7 +67,6 @@ const appRoutes: Routes = [
   ],
 
   entryComponents: [
-    CarAddComponent,
     CarDeleteDialogComponent
   ],
   providers: [],

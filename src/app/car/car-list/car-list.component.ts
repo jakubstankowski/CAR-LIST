@@ -54,6 +54,11 @@ export class CarListComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
+
+    this.spinner.show();
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 500);
    /* this.cars = this.carService.getCars();*/
 
     this.carService.getCars();
