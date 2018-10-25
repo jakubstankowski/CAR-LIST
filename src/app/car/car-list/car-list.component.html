@@ -38,7 +38,7 @@
     </mat-card-header>
     <mat-card-actions style="">
       <button  (click)="onView(car.id)" color="accent" mat-button>VIEW</button>
-      <button   routerLink="/edit" color="accent" mat-button>EDIT</button>
+      <button   [routerLink]="['/edit', car.id]" color="accent" mat-button>EDIT</button>
       <button  color="accent"  (click)="onDelete(car.id)" mat-button>DELETE</button>
     </mat-card-actions>
   </mat-card>

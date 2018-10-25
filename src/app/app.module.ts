@@ -30,7 +30,7 @@ const appRoutes: Routes = [
   {path:'', component: CarListComponent},
   {path: 'car', component: CarViewComponent},
   {path:'add', component: CarAddComponent},
-  {path:'edit', component: CarAddComponent}
+  {path:'edit/:carId', component: CarAddComponent}
 
   /*{path:'wep', component: WepComponent, canActivate:[AuthGuard]}*/
 ];
