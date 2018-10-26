@@ -6,6 +6,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {CarAddComponent} from '../car-add/car-add.component';
 import {CarDeleteDialogComponent} from '../../material-dialog/car-delete-dialog/car-delete-dialog.component';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {Router} from '@angular/router';
 
 
 
@@ -21,23 +22,23 @@ export class CarListComponent implements OnInit, OnDestroy {
   cars: Car[] = [];
   private carsSub: Subscription;
 
-  constructor(public carService: CarService, public dialog: MatDialog, private  spinner: NgxSpinnerService) {}
+  constructor(public carService: CarService, public dialog: MatDialog, private  spinner: NgxSpinnerService, private router: Router) {}
 
 
-  onView(id){
-    console.log('KLIKNIET ID : ', id);
+  /*onView(id){
+
+
+   /!* console.log('KLIKNIET ID : ', id);*!/
     this.carService.viewCar(id);
+   /!* this.router.navigate(["/car/5bd1e8299c141f1d645928e9"]);*!/
 
-  }
+  }*/
   onDelete(id){
-
     const dialogRef = this.dialog.open(CarDeleteDialogComponent,
       {
         disableClose: true,
       });
-
     dialogRef.afterClosed().subscribe(result => {
-
       if (result === true){
 
         this.spinner.show();
@@ -45,9 +46,7 @@ export class CarListComponent implements OnInit, OnDestroy {
           this.spinner.hide();
           this.carService.deleteCar(id);
           }, 1000);
-
       }
-
     });
 
   }
@@ -55,10 +54,7 @@ export class CarListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.spinner.show();
-    setTimeout(() => {
-      this.spinner.hide();
-    }, 500);
+
    /* this.cars = this.carService.getCars();*/
 
     this.carService.getCars();

@@ -5,6 +5,7 @@
 .carName{
   font-size: 2em !important;
   color: #3F4447;
+  text-transform: uppercase !important;
 }
 
 .carViewPrice{

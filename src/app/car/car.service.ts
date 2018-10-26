@@ -72,9 +72,20 @@ export class CarService {
   }
 
 
-  viewCar(carId: string){
-    console.log('CAR ID FROM SERVICE : ', carId);
+  getViewCar(id: string){
+    console.log('OTRZYMAŁEM ID : ', id);
+    return this.http.get<{ _id: string; name: string; model: string,  year: number, mileage :number, description: string ,price: number, telephone: number}>
+    ("http://localhost:3000/api/cars/" + id);
   }
+
+  getEditCar(id: string) {
+
+    console.log('GET CAR  GET !#@#!@!#@#!@!#@!#@ ID : ', id);
+    console.log('CARS : ', this.cars);
+    return this.http.get<{ _id: string; name: string; model: string,  year: number, mileage :number, description: string ,price: number, telephone: number}>
+    ("http://localhost:3000/api/cars/" + id);
+
+  };
 
 
 
@@ -95,20 +106,6 @@ export class CarService {
       });
   }
 
-
-  getCar(id: string) {
-
-    console.log('GET CAR  GET !#@#!@!#@#!@!#@!#@ ID : ', id);
-
-    console.log('CARS : ', this.cars);
-    return this.http.get<{ _id: string; name: string; model: string,  year: number, mileage :number, description: string ,price: number, telephone: number}>
-    ("http://localhost:3000/api/cars/" + id);
-
-
-  };
-
-
-
   deleteCar(carId: string) {
     console.log('CAR ID FROM SERVICE : ', carId);
 
@@ -118,10 +115,6 @@ export class CarService {
         this.carsUpdated.next([...this.cars]);
       });
   }
-
-
-
-
 
 }
 

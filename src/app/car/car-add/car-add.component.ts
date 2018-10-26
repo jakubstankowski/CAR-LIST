@@ -15,17 +15,16 @@ import {Car} from '../car.model';
   styleUrls: ['./car-add.component.css']
 })
 export class CarAddComponent implements OnInit {
-  enteredName = "";
-  enteredModel = "";
+  enteredName = '';
+  enteredModel = '';
   enteredYear = null;
   enteredPrice = null;
-  enteredDescription = "";
+  enteredDescription = '';
   enteredMileage = null;
   enteredPhone = null;
 
   car: Car;
-  isLoading = false;
-  private mode = "create";
+  private editMode = 'create';
   private carId: string;
   public formTitle = 'ADD NEW CAR';
   public  formButtonTitle = 'ADD';
@@ -40,19 +39,17 @@ export class CarAddComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
+      console.log('PARAM MAP  EDIT !@#!@#: ', paramMap);
 
-      if (paramMap.has("carId")) {
-        this.mode = "edit";
-        this.carId = paramMap.get("carId");
-
-        console.log('CAR ID : ', this.carId);
+      if (paramMap.has('carId')) {
+        this.editMode = 'edit';
+        this.carId = paramMap.get('carId');
         this.formTitle = 'EDIT CAR';
         this.formButtonTitle = 'EDIT';
 
-        /*this.car = this.carService.getCar(this.carId);*/
+        this.showSpinner();
 
-
-       this.carService.getCar(this.carId).subscribe(carData => {
+        this.carService.getEditCar(this.carId).subscribe(carData => {
           console.log('CAR DATA FROM BACKEND : ', carData);
           this.car = {
             id: carData._id,
@@ -65,15 +62,11 @@ export class CarAddComponent implements OnInit {
             telephone: carData.telephone
           };
         });
-
-
         console.log('CAR ID  GET : ', this.carId);
-
-
       } else {
-        this.mode = "create";
+        this.editMode = 'create';
         this.carId = null;
-        console.log('MODE  !@#!@#!@#!@#!@#: ', this.mode);
+        console.log('MODE  !@#!@#!@#!@#!@#: ', this.editMode);
 
         /*this.postId = null;*/
       }
@@ -81,12 +74,12 @@ export class CarAddComponent implements OnInit {
   }
 
   onSaveCar(form: NgForm) {
+      this.showSpinner();
 
-        if (this.mode === 'create'){
-          console.log('MODE create ? ', this.mode);
-         this.carService.addCar(form.value.name, form.value.model, form.value.year, form.value.mileage, form.value.description, form.value.price, form.value.telephone);
+        if (this.editMode === 'create') {
+          this.carService.addCar(form.value.name, form.value.model, form.value.year, form.value.mileage, form.value.description, form.value.price, form.value.telephone);
        } else {
-          console.log('MODE  EDIT? ', this.mode);
+          console.log('MODE  EDIT? ', this.editMode);
 
           console.log('THIS CAR ID : ', this.carId);
           this.carService.updateCar(
@@ -97,10 +90,18 @@ export class CarAddComponent implements OnInit {
             form.value.mileage,
             form.value.description,
             form.value.price,
-            form.value.telephone)
+            form.value.telephone);
         }
        this.router.navigate(['/']);
-      form.resetForm();
+        form.resetForm();
+    }
+
+
+    showSpinner() {
+      this.spinner.show();
+      setTimeout(() => {
+        this.spinner.hide();
+      }, 500);
     }
 
 

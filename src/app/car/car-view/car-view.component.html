@@ -7,18 +7,18 @@
 
 
         <mat-card-title>
-          <h1 class="carName">AUDI A4</h1>
+          <h1 class="carName">{{car?.name}} {{car?.model}}</h1>
         </mat-card-title>
         <mat-card-subtitle>
-          MILEAGE: 1000 KM
+          MILEAGE: {{car?.mileage}} KM
         </mat-card-subtitle>
         <mat-card-subtitle>
-          YEAR: 2019
+          YEAR: {{car?.year}}
         </mat-card-subtitle>
         <span class="example-spacer"></span>
 
           <div class="carViewPrice">
-            <h1>15000 PLN</h1>
+            <h1>{{car?.price}} PLN</h1>
           </div>
 
 
@@ -28,10 +28,7 @@
   <img mat-card-image src="http://pngimg.com/uploads/mercedes/mercedes_PNG1880.png" alt="Photo of a Shiba Inu">
   <mat-card-content>
     <h2 class="mat-h2">
-      MERCEDES 1.6 LPG<br>
-      KOSA JAK SKURWYSYN<br>
-      BOGATE WYPOSAŻENIE <br>
-
+     {{car?.description}}
     </h2>
 
 
@@ -40,9 +37,13 @@
     <button  color="accent" style="margin:20px" *ngIf="hideButton === false" (click)="showTelephone()" mat-button>SHOW TELEPHONE</button>
     <div *ngIf="showNumber === true">
       <h2 class="mat-h2">
-       666 923 823
+       {{car?.telephone}}
       </h2>
     </div>
+
+    <button (click)="backToCarList()"  color="accent" style="margin:20px"  mat-button>
+      BACK TO CAR LIST
+    </button>
 
   </mat-card-actions>
 </mat-card>
