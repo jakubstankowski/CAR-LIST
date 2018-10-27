@@ -16,4 +16,8 @@ body{
   margin: 0;
 }
 
+mat-card-title{
+  text-align: center !important;
+}
+
 

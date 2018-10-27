@@ -14,16 +14,24 @@
           <h1 class="carName">{{ car.name + ' ' + car.model}}</h1>
           <h2 class="carNameMobile" style="display: none">{{car.name + ' ' + car.model}}</h2>
         </mat-card-title>
-        <mat-card-title>
-          <h2 class="carPriceMobile">{{car.price + ' ' + 'PLN'}}</h2>
-        </mat-card-title>
+
+        <!-- MOBILE PRICE SHOW < 740 PX ! -->
+        <div class="mobile-price">
+
+          <mat-card-subtitle>
+            PRICE : <span style="color: #3A739E"><strong>{{car.price}}</strong></span> PLN
+          </mat-card-subtitle>
+
+        </div>
+
+
+
         <mat-card-subtitle>
-          YEAR : {{car.year}}
+         YEAR : <span style="color: #3A739E"><strong>{{car.year}}</strong></span> YR
         </mat-card-subtitle>
 
       </div>
       <span class="example-spacer"></span>
-
       <div class="carPrice">
         <h1>{{car.price + ' ' + 'PLN'}}</h1>
       </div>

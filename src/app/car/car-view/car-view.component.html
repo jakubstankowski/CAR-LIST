@@ -6,7 +6,7 @@
   <mat-card-header>
 
 
-        <mat-card-title>
+        <mat-card-title >
           <h1 class="carName">{{car?.name}} {{car?.model}}</h1>
         </mat-card-title>
         <mat-card-subtitle>
@@ -27,23 +27,20 @@
 
   <img mat-card-image src="http://pngimg.com/uploads/mercedes/mercedes_PNG1880.png" alt="Photo of a Shiba Inu">
   <mat-card-content>
-    <h2 class="mat-h2">
-     {{car?.description}}
-    </h2>
+    <mat-card style="background-color: #3A739E">
+      <div class="car-info" >
+        <mat-icon align="center">description</mat-icon>
+        <h2  style="color:#3f4447" class="mat-h2">
+          {{car?.description}}
+        </h2>
+      </div>
+      <mat-card-actions    align="center">
+        <button style="width: 100%" mat-button>LIKE</button>
+        <button  style="width: 100%" mat-button>SHARE</button>
+      </mat-card-actions>
+    </mat-card>
 
 
   </mat-card-content>
-  <mat-card-actions align="center">
-    <button  color="accent" style="margin:20px" *ngIf="hideButton === false" (click)="showTelephone()" mat-button>SHOW TELEPHONE</button>
-    <div *ngIf="showNumber === true">
-      <h2 class="mat-h2">
-       {{car?.telephone}}
-      </h2>
-    </div>
 
-    <button (click)="backToCarList()"  color="accent" style="margin:20px"  mat-button>
-      BACK TO CAR LIST
-    </button>
-
-  </mat-card-actions>
 </mat-card>

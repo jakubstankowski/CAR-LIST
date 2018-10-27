@@ -5,13 +5,25 @@
 .carName{
   font-size: 2em !important;
   color: #3F4447;
+  margin-left: 0 !important;
+  text-align: left;
   text-transform: uppercase !important;
+}
+
+.back-to-car-list-btn{
+  margin-bottom: 16px !important;
+}
+.car-info{
+
+  text-align: center;
+  color: #3A739E;
 }
 
 .carViewPrice{
   color: #3A739E;
 
 }
+
 
 .example-spacer {
   flex: 1 1 auto;
@@ -30,7 +42,7 @@
   }
 
   .carName{
-    text-align: center;
+    text-align: left;
   }
 
   .carPrice{

@@ -4,6 +4,7 @@ import {Car} from './car.model';
 import {Subject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 
 @Injectable({
@@ -11,15 +12,20 @@ import {map} from 'rxjs/operators';
 })
 export class CarService {
 
-  constructor(private http: HttpClient) {
-
-
+  constructor(private http: HttpClient, public spinner: NgxSpinnerService) {
 
   }
 
 
   public cars: Car[] = [];
   private carsUpdated = new Subject<Car[]>();
+
+  showSpinner(){
+    this.spinner.show();
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 500);
+  }
 
   getCars(){
     this.http
@@ -115,6 +121,8 @@ export class CarService {
         this.carsUpdated.next([...this.cars]);
       });
   }
+
+
 
 }
 

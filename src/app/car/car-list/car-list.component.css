@@ -64,6 +64,10 @@ ul{
 
 .carName{
   text-transform: uppercase;
+  text-align: left;
+}
+.mobile-price{
+  display: none;
 }
 
 
@@ -72,18 +76,23 @@ ul{
   .carPrice{
     font: 400 0.7em Roboto,"Helvetica Neue",sans-serif;
     margin-top: 15px;
+    text-align: left;
   }
 
 
 }
 @media only screen and (max-width: 650px) {
+  .carName{
+    font: 400 1.7em Roboto,"Helvetica Neue",sans-serif;
+    text-align: center;
+
+  }
   .carPrice{
     display: none;
   }
 
-  .carPriceMobile{
-    display: inline;
-    color: #3A739E;
+  .mobile-price{
+    display: block;
   }
 
   .carNameMobile{

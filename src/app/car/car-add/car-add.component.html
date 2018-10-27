@@ -3,51 +3,64 @@
 
   <div  align="center" class="example-container">
     <h1 class="add-car-title" mat-dialog-title>{{formTitle}}</h1>
-    <form #form="ngForm" (submit)="onSaveCar(form)"  novalidate>
+    <form [formGroup]="form" (submit)="onSaveCar()"  novalidate>
 
 
       <mat-form-field>
-        <input  name="name"  [ngModel]="car?.name" required #name = 'ngModel' matInput  maxlength="10" placeholder="NAME">
-        <mat-error *ngIf="name.invalid">NAME IS REQUIRED</mat-error>
-      </mat-form-field>
-
-      <mat-form-field>
-        <input  name="model" [ngModel]="car?.model" required #model='ngModel' matInput  maxlength="10" placeholder="MODEL">
-        <mat-error *ngIf="model.invalid">MODEL IS REQUIRED</mat-error>
-      </mat-form-field>
-
-      <mat-form-field>
-        <input  name="year" [ngModel]="car?.year" required #year = 'ngModel' matInput placeholder="YEAR" type="number" class="example-right-align">
-        <mat-error *ngIf="year.invalid">YEAR IS REQUIRED</mat-error>
-      </mat-form-field>
-
-      <mat-form-field>
-        <input name="mileage" [ngModel]="car?.mileage" required #mileage = 'ngModel' matInput placeholder="MILEAGE" type="number" class="example-right-align">
-        <mat-error *ngIf="mileage.invalid">MILEAGE IS REQUIRED</mat-error>
+        <input formControlName="name"   matInput   placeholder="Name">
+        <mat-error *ngIf="form.get('name').invalid">Please enter a car name !</mat-error>
       </mat-form-field>
 
 
-      <div class="button-row" style="width: 60px; height: 60px"> <button class="fileInput" mat-button color="primary" mat-mini-fab (click)="imgFileInput.click()"><mat-icon>add_a_photo</mat-icon></button> <input hidden type="file" #imgFileInput/> </div>
 
       <mat-form-field>
-        <textarea  name="description" [ngModel]="car?.description" required #description = 'ngModel' class="descriptionInput" matInput placeholder="DESCRIPTION"></textarea>
-        <mat-error *ngIf="description.invalid">DESCRIPTION IS REQUIRED</mat-error>
+        <input   formControlName="model" matInput   placeholder="Model">
+        <mat-error *ngIf="form.get('model').invalid">Please enter a car model !</mat-error>
       </mat-form-field>
 
       <mat-form-field>
-        <input  name="price" [ngModel]="car?.price" required #price = 'ngModel' matInput placeholder="PRICE" type="number" class="example-right-align">
-        <mat-error *ngIf="price.invalid">PRICE IS REQUIRED</mat-error>
+        <input  formControlName="year" matInput placeholder="Year" type="number" class="example-right-align">
+        <mat-error *ngIf="form.get('year').invalid">Please enter a valid car year ! </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input  formControlName="mileage" matInput placeholder="Mileage" type="number" class="example-right-align">
+        <mat-error *ngIf="form.get('mileage').invalid">Please enter a car mileage ! </mat-error>
+      </mat-form-field>
+
+
+      <!-- IMAGE INPUT -->
+      <div class="button-row">
+        <button  type="button" class="fileInput" mat-button color="primary" mat-mini-fab (click)="imgFileInput.click()">
+          <mat-icon>add_a_photo</mat-icon></button>
+        <input hidden type="file"  (change)="onImagePicked($event)" #imgFileInput/>
+      </div>
+
+      <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview">
+        <img [src]="imagePreview" [alt]="form.value.name">
+      </div>
+      <!-- END OF IMAGE INPUT -->
+
+
+      <mat-form-field>
+        <textarea   formControlName="description" class="descriptionInput" matInput placeholder="Description"></textarea>
+        <mat-error *ngIf="form.get('description').invalid">Please enter a car description ! </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input formControlName="price" matInput placeholder="Price" type="number" class="example-right-align">
+        <mat-error *ngIf="form.get('price').invalid">Please enter a valid car price ! </mat-error>
         <span matPrefix>$&nbsp;</span>
         <span matSuffix>.00</span>
       </mat-form-field>
 
       <mat-form-field>
         <span matPrefix>+48 &nbsp;</span>
-        <input name="telephone" [ngModel]="car?.telephone" required #telephone = 'ngModel' type="tel" matInput placeholder="TELEPHONE">
-        <mat-error *ngIf="telephone.invalid">TELEPHONE IS REQUIRED</mat-error>
+        <input formControlName="telephone" type="tel" matInput placeholder="Telephone">
+        <mat-error *ngIf="form.get('telephone').invalid">Please enter a valid number !</mat-error>
         <mat-icon matSuffix>phone</mat-icon>
       </mat-form-field>
-      <button mat-button
+      <!--<button mat-button
                       [disabled]="
                           name.invalid ||
                           model.invalid ||
@@ -59,14 +72,14 @@
                       type="submit"
       >
                 {{formButtonTitle}}
-              </button>
-      <button
-                mat-button
-                routerLink="/"
-      >
-                CANCEL
-              </button>
+              </button>-->
+      <button type="submit" color="accent" mat-button>
+        {{formButtonTitle}}
+      </button>
+      <button mat-button routerLink="/">
+        CANCEL
+      </button>
     </form>
   </div>
 
-</mat-card>
+</mat-card> <!-- END OF FORM -->

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Car} from '../car.model';
 import {CarService} from '../car.service';
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 
 @Component({
   selector: 'app-car-view',
@@ -11,23 +11,22 @@ import {ActivatedRoute, ParamMap} from '@angular/router';
 export class CarViewComponent implements OnInit {
 
   car: Car;
-  showNumber = false;
-  hideButton = false;
   public carId = null;
 
-  constructor(public carService: CarService, public route: ActivatedRoute) {
+  constructor(public carService: CarService, public route: ActivatedRoute, private router: Router) {
     console.log('CARS : ', carService.cars);
   }
 
-  showTelephone(){
-    this.showNumber = true;
-    this.hideButton = true;
+  backToCarList(){
+    this.router.navigate(['/']);
   }
 
 
   ngOnInit() {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
+      this.carService.showSpinner();
       console.log('PARAM MAP VIEW !@#!@# : ', paramMap);
+
       this.carId = paramMap.get('carId');
 
 
@@ -56,6 +55,6 @@ export class CarViewComponent implements OnInit {
 
     });
 
-  }
+  } //  end of NG ON INIT
 
 }

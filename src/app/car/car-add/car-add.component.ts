@@ -1,11 +1,13 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import {MatDialogRef, MAT_DIALOG_DATA, MatSnackBar} from '@angular/material';
+import { Component, OnInit} from '@angular/core';
 
 import { NgForm } from '@angular/forms';
 import {CarService} from '../car.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {Car} from '../car.model';
+import { FormGroup, FormControl, Validators } from "@angular/forms";
+import {max} from 'rxjs/operators';
+
 
 
 
@@ -22,7 +24,8 @@ export class CarAddComponent implements OnInit {
   enteredDescription = '';
   enteredMileage = null;
   enteredPhone = null;
-
+  imagePreview: string;
+  form: FormGroup;
   car: Car;
   private editMode = 'create';
   private carId: string;
@@ -30,14 +33,27 @@ export class CarAddComponent implements OnInit {
   public  formButtonTitle = 'ADD';
 
 
-
-
-
-  constructor( public carService: CarService, private  spinner: NgxSpinnerService, private router: Router, public route: ActivatedRoute) {
-
-  }
+  constructor( public carService: CarService, private  spinner: NgxSpinnerService, private router: Router, public route: ActivatedRoute) {}
 
   ngOnInit() {
+
+
+    this.form = new FormGroup({
+      name: new FormControl(null, {validators: [Validators.required, Validators.minLength(3)]}),
+      model: new FormControl(null, { validators: [Validators.required] }),
+      year: new FormControl(null, {validators: [Validators.required, Validators.min(1900), Validators.max(2020)]}),
+      mileage: new FormControl(null, {validators: [Validators.required]}),
+      description: new FormControl(null, {validators: [Validators.required, Validators.minLength(5)]}),
+      price: new FormControl(null, {validators: [Validators.required, Validators.max(10000000)]}),
+      telephone: new FormControl(null, {validators: [Validators.required]}),
+      image: new FormControl(null, {validators: [Validators.required]}),
+
+    });
+
+    console.log('FORM : ', this.form);
+
+
+
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       console.log('PARAM MAP  EDIT !@#!@#: ', paramMap);
 
@@ -47,7 +63,7 @@ export class CarAddComponent implements OnInit {
         this.formTitle = 'EDIT CAR';
         this.formButtonTitle = 'EDIT';
 
-        this.showSpinner();
+        this.carService.showSpinner();
 
         this.carService.getEditCar(this.carId).subscribe(carData => {
           console.log('CAR DATA FROM BACKEND : ', carData);
@@ -61,7 +77,20 @@ export class CarAddComponent implements OnInit {
             price: carData.price,
             telephone: carData.telephone
           };
+
+          this.form.setValue({
+            name: this.car.name,
+            model: this.car.model,
+            year: this.car.year,
+            mileage: this.car.mileage,
+            description: this.car.description,
+            price: this.car.price,
+            telephone: this.car.telephone,
+          });
         });
+
+
+
         console.log('CAR ID  GET : ', this.carId);
       } else {
         this.editMode = 'create';
@@ -73,36 +102,51 @@ export class CarAddComponent implements OnInit {
     });
   }
 
-  onSaveCar(form: NgForm) {
-      this.showSpinner();
 
-        if (this.editMode === 'create') {
-          this.carService.addCar(form.value.name, form.value.model, form.value.year, form.value.mileage, form.value.description, form.value.price, form.value.telephone);
-       } else {
-          console.log('MODE  EDIT? ', this.editMode);
+  onImagePicked(event: Event){
+    const file = (event.target as HTMLInputElement).files[0];
+    this.form.patchValue({image: file});
 
-          console.log('THIS CAR ID : ', this.carId);
-          this.carService.updateCar(
-            this.carId,
-            form.value.name,
-            form.value.model,
-            form.value.year,
-            form.value.mileage,
-            form.value.description,
-            form.value.price,
-            form.value.telephone);
-        }
-       this.router.navigate(['/']);
-        form.resetForm();
+    console.log('FORM  ', this.form);
+    console.log('file : ', file);
+
+    this.form.get('image').updateValueAndValidity();
+    const reader = new FileReader();
+
+    reader.onload = () => {
+
+      this.imagePreview = reader.result;
+    };
+
+
+    console.log('IMAGE PREVIEW : ', this.imagePreview);
+    reader.readAsDataURL(file);
+
+
+  }
+  onSaveCar() {
+    console.log('SAVE CAR WORKING ? ');
+
+    this.carService.showSpinner();
+    if (this.editMode === 'create') {
+      this.carService.addCar(this.form.value.name, this.form.value.model, this.form.value.year, this.form.value.mileage, this.form.value.description, this.form.value.price, this.form.value.telephone);
+    } else {
+      this.carService.updateCar(
+        this.carId,
+        this.form.value.name,
+        this.form.value.model,
+        this.form.value.year,
+        this.form.value.mileage,
+        this.form.value.description,
+        this.form.value.price,
+        this.form.value.telephone);
     }
+    this.router.navigate(['/']);
+    this.form.reset();
+  }
 
 
-    showSpinner() {
-      this.spinner.show();
-      setTimeout(() => {
-        this.spinner.hide();
-      }, 500);
-    }
+
 
 
 
