@@ -3,7 +3,7 @@
 
   <div  align="center" class="example-container">
     <h1 class="add-car-title" mat-dialog-title>{{formTitle}}</h1>
-    <form [formGroup]="form" (submit)="onSaveCar()"  novalidate>
+    <form [formGroup]="form" (submit)="onSaveCar()">
 
 
       <mat-form-field>
@@ -20,7 +20,7 @@
 
       <mat-form-field>
         <input  formControlName="year" matInput placeholder="Year" type="number" class="example-right-align">
-        <mat-error *ngIf="form.get('year').invalid">Please enter a valid car year ! </mat-error>
+        <mat-error *ngIf="form.get('year').invalid">Range car year is 1900 - 2019 </mat-error>
       </mat-form-field>
 
       <mat-form-field>
@@ -30,17 +30,19 @@
 
 
       <!-- IMAGE INPUT -->
-      <div class="button-row">
-        <button  type="button" class="fileInput" mat-button color="primary" mat-mini-fab (click)="imgFileInput.click()">
-          <mat-icon>add_a_photo</mat-icon></button>
-        <input hidden type="file"  (change)="onImagePicked($event)" #imgFileInput/>
+
+      <button  type="button" class="file-input" mat-button color="primary" mat-mini-fab (click)="imgFileInput.click()">
+        <mat-icon>add_a_photo</mat-icon></button>
+
+      <input hidden type="file"  (change)="onImagePicked($event)" #imgFileInput/>
+
+      <div class="image-row" *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid">
+        <div class="image-preview">
+          <img [src]="imagePreview" [alt]="form.value.name">
+        </div>
       </div>
 
-      <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview">
-        <img [src]="imagePreview" [alt]="form.value.name">
-      </div>
       <!-- END OF IMAGE INPUT -->
-
 
       <mat-form-field>
         <textarea   formControlName="description" class="descriptionInput" matInput placeholder="Description"></textarea>

@@ -7,7 +7,8 @@ const carSchema = mongoose.Schema({
   mileage: { type: Number, required: true },
   description: { type: String, required: true },
   price: { type: Number, required: true },
-  telephone: { type: String, required: true }
+  telephone: { type: String, required: true },
+  imagePath: { type: String, required: true }
 
 });
 

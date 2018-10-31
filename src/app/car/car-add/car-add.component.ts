@@ -5,8 +5,10 @@ import {CarService} from '../car.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {Car} from '../car.model';
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {max} from 'rxjs/operators';
+import {mimeType} from './mime-type.validator';
+
 
 
 
@@ -31,6 +33,7 @@ export class CarAddComponent implements OnInit {
   private carId: string;
   public formTitle = 'ADD NEW CAR';
   public  formButtonTitle = 'ADD';
+  imageIsLoad = false;
 
 
   constructor( public carService: CarService, private  spinner: NgxSpinnerService, private router: Router, public route: ActivatedRoute) {}
@@ -41,12 +44,15 @@ export class CarAddComponent implements OnInit {
     this.form = new FormGroup({
       name: new FormControl(null, {validators: [Validators.required, Validators.minLength(3)]}),
       model: new FormControl(null, { validators: [Validators.required] }),
-      year: new FormControl(null, {validators: [Validators.required, Validators.min(1900), Validators.max(2020)]}),
+      year: new FormControl(null, {validators: [Validators.required/*, Validators.min(1900), Validators.max(2020)*/]}),
       mileage: new FormControl(null, {validators: [Validators.required]}),
       description: new FormControl(null, {validators: [Validators.required, Validators.minLength(5)]}),
       price: new FormControl(null, {validators: [Validators.required, Validators.max(10000000)]}),
       telephone: new FormControl(null, {validators: [Validators.required]}),
-      image: new FormControl(null, {validators: [Validators.required]}),
+      image: new FormControl(null, {
+        validators: [Validators.required],
+        asyncValidators: [mimeType]
+      }),
 
     });
 
@@ -63,8 +69,6 @@ export class CarAddComponent implements OnInit {
         this.formTitle = 'EDIT CAR';
         this.formButtonTitle = 'EDIT';
 
-        this.carService.showSpinner();
-
         this.carService.getEditCar(this.carId).subscribe(carData => {
           console.log('CAR DATA FROM BACKEND : ', carData);
           this.car = {
@@ -75,7 +79,8 @@ export class CarAddComponent implements OnInit {
             mileage: carData.mileage,
             description: carData.description,
             price: carData.price,
-            telephone: carData.telephone
+            telephone: carData.telephone,
+            imagePath: carData.imagePath,
           };
 
           this.form.setValue({
@@ -86,6 +91,7 @@ export class CarAddComponent implements OnInit {
             description: this.car.description,
             price: this.car.price,
             telephone: this.car.telephone,
+            image: this.car.imagePath
           });
         });
 
@@ -103,33 +109,39 @@ export class CarAddComponent implements OnInit {
   }
 
 
-  onImagePicked(event: Event){
+  onImagePicked(event: Event) {
+
     const file = (event.target as HTMLInputElement).files[0];
     this.form.patchValue({image: file});
 
     console.log('FORM  ', this.form);
-    console.log('file : ', file);
+    console.log('form get image : ', this.form.get('image'));
+
 
     this.form.get('image').updateValueAndValidity();
     const reader = new FileReader();
 
     reader.onload = () => {
-
       this.imagePreview = reader.result;
+      this.imageIsLoad = true;
     };
 
-
-    console.log('IMAGE PREVIEW : ', this.imagePreview);
     reader.readAsDataURL(file);
 
 
   }
   onSaveCar() {
+
+    if (this.form.invalid) {
+      return;
+    }
+
+
     console.log('SAVE CAR WORKING ? ');
 
-    this.carService.showSpinner();
+   /* this.carService.showSpinner();*/
     if (this.editMode === 'create') {
-      this.carService.addCar(this.form.value.name, this.form.value.model, this.form.value.year, this.form.value.mileage, this.form.value.description, this.form.value.price, this.form.value.telephone);
+      this.carService.addCar(this.form.value.name, this.form.value.model, this.form.value.year, this.form.value.mileage, this.form.value.description, this.form.value.price, this.form.value.telephone, this.form.value.image);
     } else {
       this.carService.updateCar(
         this.carId,
@@ -139,10 +151,11 @@ export class CarAddComponent implements OnInit {
         this.form.value.mileage,
         this.form.value.description,
         this.form.value.price,
-        this.form.value.telephone);
+        this.form.value.telephone,
+        this.form.value.image
+      );
     }
-    this.router.navigate(['/']);
-    this.form.reset();
+    /*this.form.reset();*/
   }
 
 

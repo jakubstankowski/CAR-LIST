@@ -42,7 +42,8 @@ export class CarViewComponent implements OnInit {
             mileage: carData.mileage,
             description: carData.description,
             price: carData.price,
-            telephone: carData.telephone
+            telephone: carData.telephone,
+            imagePath: carData.imagePath,
           };
           console.log('CAR DATA : ', this.car);
         })

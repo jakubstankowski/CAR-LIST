@@ -31,9 +31,7 @@ export class CarListComponent implements OnInit, OnDestroy {
         disableClose: true,
       });
     dialogRef.afterClosed().subscribe(result => {
-      if (result === true){
-
-       this.carService.showSpinner();
+      if (result === true) {
         setTimeout(() => {
           this.carService.deleteCar(id);
           }, 1000);
@@ -45,17 +43,22 @@ export class CarListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
+    console.log('TO SIĘ WYKONA CAR LIST !@!@#');
+
+    this.carService.showSpinner();
     this.carService.getCars();
     this.carsSub = this.carService.getCarUpdateListener()
+
       .subscribe((cars: Car[]) => {
         console.log('SUBSCRIBE DONE !@#!');
 
-        this.cars= cars;
+        this.cars = cars;
+        console.log('THIS CARS : ', this.cars);
         console.log('SUBSCIBE CAR : ', cars);
       });
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.carsSub.unsubscribe();
     console.log('UNSUBSCIBE !@#!@#');
 

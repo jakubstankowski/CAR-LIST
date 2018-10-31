@@ -27,8 +27,51 @@ textarea {
 
 }
 
+.image-row{
+  width: 150px;
+  height: 100px;
+  border-radius: 25%;
+  border: 3px solid #3A739E;
+  z-index: 999;
+  margin-top: 20px;
+}
+
+.file-input{
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 60px;
+  height: 60px;
+
+}
+
+.image-preview {
+  height: 3rem;
+  margin: 1rem 0;
+
+}
+
+.image-preview img {
+  height: 100%;
+}
+
+
 
 @media only screen and (max-width: 750px) {
+  .example-container > * {
+    width: 70%;
+  }
+
+
+  .image-row{
+    width: 100px;
+    height: 100px;
+  }
+
+  .image-preview {
+    height: 2.3rem;
+    margin: 25px 0 1rem;
+
+  }
 
   .example-card{
     margin: 16px 16px;
@@ -44,20 +87,6 @@ textarea {
   }
 
   .phoneInputMobile{
-    display: block;
-  }
-
-  .image-preview {
-    height: 5rem;
-    margin: 1rem 0;
-  }
-
-  .image-preview img {
-    height: 100%;
-  }
-
-
-  .mob{
     display: block;
   }
 

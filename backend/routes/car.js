@@ -1,10 +1,50 @@
 const express = require("express");
+const multer = require("multer");
+
 
 const Car = require("../models/car");
 
 const router = express.Router();
 
-router.post("", (req, res, next) => {
+const MIME_TYPE_MAP = {
+  "image/png": "png",
+  "image/jpeg": "jpg",
+  "image/jpg": "jpg"
+};
+
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const isValid = MIME_TYPE_MAP[file.mimetype];
+    let error = new Error("Invalid mime type");
+    if (isValid) {
+      error = null;
+    }
+    cb(error, "backend/images");
+  },
+  filename: (req, file, cb) => {
+    const name = file.originalname
+      .toLowerCase()
+      .split(" ")
+      .join("-");
+    const ext = MIME_TYPE_MAP[file.mimetype];
+    cb(null, name + "-" + Date.now() + "." + ext);
+
+    console.log('NAME : ', name);
+    console.log('DATE NOW  : ', Date.now());
+    console.log('EXT : ', ext);
+
+  }
+});
+
+
+
+
+
+router.post("",
+  multer({ storage: storage }).single("image"),
+  (req, res, next) => {
+  const url = req.protocol + "://" + req.get("host");
   const car = new Car({
     name: req.body.name,
     model: req.body.model,
@@ -12,18 +52,33 @@ router.post("", (req, res, next) => {
     mileage: req.body.mileage,
     description: req.body.description,
     price: req.body.price,
-    telephone: req.body.telephone
+    telephone: req.body.telephone,
+    imagePath: url + "/images/" + req.file.filename
   });
 
   car.save().then(createdPost => {
     res.status(201).json({
       message: "CAR added successfully",
-      carId: createdPost._id
+      car:{
+        ...createdPost,
+        id: createdPost._id
+      }
     });
   });
 });
 
-router.put("/:id", (req, res, next) => {
+router.put("/:id",
+  multer({ storage: storage }).single("image"),
+  (req, res, next) => {
+
+    let imagePath = req.body.imagePath;
+    if (req.file) {
+      const url = req.protocol + "://" + req.get("host");
+      imagePath = url + "/images/" + req.file.filename
+    }
+
+
+
   const car = new Car({
     _id: req.body.id,
     name: req.body.name,
@@ -32,8 +87,11 @@ router.put("/:id", (req, res, next) => {
     mileage: req.body.mileage,
     description: req.body.description,
     price: req.body.price,
-    telephone: req.body.telephone
+    telephone: req.body.telephone,
+    imagePath: imagePath
   });
+
+    console.log('CAR  EDIT : ', car);
   Car.updateOne({ _id: req.params.id }, car).then(result => {
     console.log('RESULT : ', result);
     res.status(200).json({ message: "UPDATE SUCCESS ! " });

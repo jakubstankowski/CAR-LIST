@@ -7,5 +7,6 @@ export interface Car {
   description: string;
   price: number;
   telephone: number;
+  imagePath: string;
 }
 

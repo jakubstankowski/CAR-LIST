@@ -1,6 +1,12 @@
 .example-header-image {
-  background-image: url('http://pngimg.com/uploads/mercedes/mercedes_PNG1880.png');
-  background-size: cover;
+  margin-top: 15px;
+  width: 100%;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+.example-header-image img{
+
+  width: 100%;
 }
 
 
@@ -16,7 +22,6 @@
 
 .mat-card-avatar{
   width: 148px !important;
-  height: 122px !important;
   border-radius: 0 !important;
 }
 
