@@ -7,17 +7,24 @@
 
 
         <mat-card-title >
-          <h1 class="carName">{{car?.name}} {{car?.model}}</h1>
+          <h1 class="car-name">{{car?.name}} {{car?.model}}</h1>
         </mat-card-title>
+
         <mat-card-subtitle>
-          MILEAGE: {{car?.mileage}} KM
+          MILEAGE:  <span style="color: #3A739E"> <strong>{{car?.mileage}}</strong></span> KM
         </mat-card-subtitle>
+
         <mat-card-subtitle>
-          YEAR: {{car?.year}}
+          YEAR: <span style="color: #3A739E"><strong>{{car?.year}}</strong></span> YR
         </mat-card-subtitle>
+
+        <mat-card-subtitle class="mobile-view-price">
+            PRICE : <span style="color: #3A739E"><strong>{{car?.price}}</strong></span> PLN
+        </mat-card-subtitle>
+
         <span class="example-spacer"></span>
 
-          <div class="carViewPrice">
+          <div class="car-price">
             <h1>{{car?.price}} PLN</h1>
           </div>
 
@@ -25,18 +32,25 @@
   </mat-card-header>
 
 
-  <img mat-card-image src="http://pngimg.com/uploads/mercedes/mercedes_PNG1880.png" alt="Photo of a Shiba Inu">
+  <img mat-card-image [src]="car?.imagePath" [alt]="car?.name + '' + car?.model">
   <mat-card-content>
-    <mat-card style="background-color: #3A739E">
+    <mat-card style="background-color: #f5f5f5">
       <div class="car-info" >
         <mat-icon align="center">description</mat-icon>
-        <h2  style="color:#3f4447" class="mat-h2">
-          {{car?.description}}
-        </h2>
+        <div class="car-description">
+          <h2  style="text-align: left; margin-top: 20px; margin-bottom: 20px" class="mat-h2">
+            {{car?.description}}
+          </h2>
+        </div>
+
       </div>
       <mat-card-actions    align="center">
-        <button style="width: 100%" mat-button>LIKE</button>
-        <button  style="width: 100%" mat-button>SHARE</button>
+        <button *ngIf="!showTelephoneStatus" (click)="showTelephone()" style="width: 100%" mat-button>SHOW TELEPHONE</button>
+        <div  *ngIf="showTelephoneStatus" class="show-telephone">
+          +48 {{car?.telephone}}
+        </div>
+        <button  (click)="backToCarList()"  style="width: 100%" mat-button>BACK TO CAR LIST</button>
+
       </mat-card-actions>
     </mat-card>
 

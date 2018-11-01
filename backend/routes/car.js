@@ -29,11 +29,6 @@ const storage = multer.diskStorage({
       .join("-");
     const ext = MIME_TYPE_MAP[file.mimetype];
     cb(null, name + "-" + Date.now() + "." + ext);
-
-    console.log('NAME : ', name);
-    console.log('DATE NOW  : ', Date.now());
-    console.log('EXT : ', ext);
-
   }
 });
 

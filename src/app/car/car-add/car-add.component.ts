@@ -69,7 +69,7 @@ export class CarAddComponent implements OnInit {
         this.formTitle = 'EDIT CAR';
         this.formButtonTitle = 'EDIT';
 
-        this.carService.getEditCar(this.carId).subscribe(carData => {
+        this.carService.getCar(this.carId).subscribe(carData => {
           console.log('CAR DATA FROM BACKEND : ', carData);
           this.car = {
             id: carData._id,

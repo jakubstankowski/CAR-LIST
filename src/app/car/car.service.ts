@@ -114,15 +114,7 @@ export class CarService {
   }
 
 
-  getViewCar(id: string) {
-    console.log('OTRZYMAŁEM ID : ', id);
-    return this.http.get<{
-      _id: string; name: string; model: string,  year: number, mileage: number, description: string , price: number, telephone: number, imagePath: string}>
-    ('http://localhost:3000/api/cars/' + id);
-  }
-
-  getEditCar(id: string) {
-
+  getCar(id: string) {
     console.log('GET CAR  GET !#@#!@!#@#!@!#@!#@ ID : ', id);
     console.log('CARS : ', this.cars);
     return this.http.get<{

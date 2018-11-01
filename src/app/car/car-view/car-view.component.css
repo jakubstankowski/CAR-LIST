@@ -1,14 +1,24 @@
 .car-card{
   margin: 16px !important;
+
+}
+.car-card img{
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+
 }
 
-.carName{
+.car-name{
   font-size: 2em !important;
   color: #3F4447;
   margin-left: 0 !important;
   text-align: left;
   text-transform: uppercase !important;
 }
+.show-telephone{
+  margin: 10px;
+}
+
+
 
 .back-to-car-list-btn{
   margin-bottom: 16px !important;
@@ -19,8 +29,9 @@
   color: #3A739E;
 }
 
-.carViewPrice{
+.car-price{
   color: #3A739E;
+  display: block;
 
 }
 
@@ -29,25 +40,36 @@
   flex: 1 1 auto;
 }
 
-
+mat-card-actions{
+  margin: 0 !important;
+}
 .mat-h2{
   padding: 2%;
   color: #3F4447;
   text-align: center;
 }
+.mobile-view-price{
+  display: none;
+}
+.car-description{
+  text-align: left;
+}
 
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 600px) {
   .carViewPrice{
     font: 400 0.7em Roboto,"Helvetica Neue",sans-serif;
   }
-
-  .carName{
-    text-align: left;
+  .mobile-view-price{
+    display: block;
   }
 
-  .carPrice{
-    text-align: center;
-    margin-top: 15px !important;
+  .car-name{
+    text-align: left;
+    font: 400 1.7em Roboto,"Helvetica Neue",sans-serif;
+  }
+
+  .car-price{
+    display: none;
   }
 
 
