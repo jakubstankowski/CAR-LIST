@@ -1,11 +1,12 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Car} from '../car.model';
-import {CarService} from '../car.service';
+import {Car} from '../../../car.model';
+import {CarService} from '../../../car.service';
 import { Subscription } from 'rxjs';
-import {MatDialog} from '@angular/material';
-import {CarDeleteDialogComponent} from '../../material-dialog/car-delete-dialog/car-delete-dialog.component';
+import {MatDialog, MatSnackBar} from '@angular/material';
+import {CarDeleteDialogComponent} from '../../../../material-dialog/car-delete-dialog/car-delete-dialog.component';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {Router} from '@angular/router';
+import {DeleteDoneComponent} from '../../../../material-dialog/delete-done/delete-done.component';
 
 
 
@@ -21,7 +22,7 @@ export class CarListComponent implements OnInit, OnDestroy {
   cars: Car[] = [];
   private carsSub: Subscription;
 
-  constructor(public carService: CarService, public dialog: MatDialog, private  spinner: NgxSpinnerService, private router: Router) {}
+  constructor(public carService: CarService, public dialog: MatDialog, public snackBar: MatSnackBar) {}
 
 
 
@@ -35,6 +36,13 @@ export class CarListComponent implements OnInit, OnDestroy {
         setTimeout(() => {
           this.carService.deleteCar(id);
           }, 1000);
+
+        setTimeout(() => {
+          this.
+          snackBar.openFromComponent(DeleteDoneComponent, {
+            duration: 1000,
+          });
+        }, 500);
       }
     });
 

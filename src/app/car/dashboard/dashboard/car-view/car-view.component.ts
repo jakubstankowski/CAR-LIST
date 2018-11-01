@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Car} from '../car.model';
-import {CarService} from '../car.service';
+import {Car} from '../../../car.model';
+import {CarService} from '../../../car.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 
 @Component({
@@ -19,7 +19,7 @@ export class CarViewComponent implements OnInit {
   }
 
   backToCarList(){
-    this.router.navigate(['/']);
+    this.router.navigate(['/dashboard']);
   }
 
 

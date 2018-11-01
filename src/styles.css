@@ -28,5 +28,16 @@ mat-card-actions{
 mat-card-title{
   text-align: center !important;
 }
+.mat-snack-bar-handset .mat-snack-bar-container{
+  background-color: #3A739E !important;
+}
+
+.dialog-notification{
+  color: white;
+  text-align: center;
+}
+
+
+
 
 

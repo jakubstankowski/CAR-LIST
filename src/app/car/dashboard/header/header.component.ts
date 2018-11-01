@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {CarAddComponent} from '../car/car-add/car-add.component';
+import {CarAddComponent} from '../dashboard/car-add/car-add.component';
 
 
 

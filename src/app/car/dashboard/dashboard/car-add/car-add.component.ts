@@ -1,10 +1,10 @@
 import { Component, OnInit} from '@angular/core';
 
 import { NgForm } from '@angular/forms';
-import {CarService} from '../car.service';
+import {CarService} from '../../../car.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {Car} from '../car.model';
+import {Car} from '../../../car.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {max} from 'rxjs/operators';
 import {mimeType} from './mime-type.validator';

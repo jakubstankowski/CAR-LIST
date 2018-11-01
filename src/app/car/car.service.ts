@@ -6,6 +6,10 @@ import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {Router} from '@angular/router';
+import {DeleteDoneComponent} from '../material-dialog/delete-done/delete-done.component';
+import {MatSnackBar} from '@angular/material';
+import {AddDoneComponent} from '../material-dialog/add-done/add-done.component';
+import {EditDoneComponent} from '../material-dialog/edit-done/edit-done.component';
 
 
 @Injectable({
@@ -13,7 +17,7 @@ import {Router} from '@angular/router';
 })
 export class CarService {
 
-  constructor(private http: HttpClient, public spinner: NgxSpinnerService, private router: Router) {
+  constructor(private http: HttpClient, public spinner: NgxSpinnerService, private router: Router, public snackBar: MatSnackBar) {
 
   }
 
@@ -106,7 +110,16 @@ export class CarService {
 
        this.cars.push(car);
         this.carsUpdated.next([...this.cars]);
-        this.router.navigate(['/']);
+        this.router.navigate(['/dashboard']);
+
+        setTimeout(() => {
+          this.
+          snackBar.openFromComponent(AddDoneComponent, {
+            duration: 1000,
+          });
+        }, 500);
+
+
       });
 
 
@@ -183,7 +196,15 @@ export class CarService {
         updatedCars[oldCarIndex] = car;
         this.cars = updatedCars;
         this.carsUpdated.next([...this.cars]);
-        this.router.navigate(['/']);
+        this.router.navigate(['/dashboard']);
+
+        setTimeout(() => {
+          this.
+          snackBar.openFromComponent(EditDoneComponent, {
+            duration: 1000,
+          });
+        }, 500);
+
       });
   } //  END OF UPDATE CAR, PHOTO !@#!@!@#
 
