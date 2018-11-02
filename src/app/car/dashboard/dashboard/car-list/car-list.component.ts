@@ -21,6 +21,7 @@ export class CarListComponent implements OnInit, OnDestroy {
 
   cars: Car[] = [];
   private carsSub: Subscription;
+  isLoading = false;
 
   constructor(public carService: CarService, public dialog: MatDialog, public snackBar: MatSnackBar) {}
 
@@ -50,7 +51,7 @@ export class CarListComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-
+    this.isLoading = true;
     console.log('TO SIĘ WYKONA CAR LIST !@!@#');
 
     this.carService.showSpinner();
@@ -59,7 +60,7 @@ export class CarListComponent implements OnInit, OnDestroy {
 
       .subscribe((cars: Car[]) => {
         console.log('SUBSCRIBE DONE !@#!');
-
+        this.isLoading = false;
         this.cars = cars;
         console.log('THIS CARS : ', this.cars);
         console.log('SUBSCIBE CAR : ', cars);

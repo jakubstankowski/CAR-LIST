@@ -19,13 +19,6 @@ import {mimeType} from './mime-type.validator';
   styleUrls: ['./car-add.component.css']
 })
 export class CarAddComponent implements OnInit {
-  enteredName = '';
-  enteredModel = '';
-  enteredYear = null;
-  enteredPrice = null;
-  enteredDescription = '';
-  enteredMileage = null;
-  enteredPhone = null;
   imagePreview: string;
   form: FormGroup;
   car: Car;
@@ -44,7 +37,7 @@ export class CarAddComponent implements OnInit {
     this.form = new FormGroup({
       name: new FormControl(null, {validators: [Validators.required, Validators.minLength(3)]}),
       model: new FormControl(null, { validators: [Validators.required] }),
-      year: new FormControl(null, {validators: [Validators.required/*, Validators.min(1900), Validators.max(2020)*/]}),
+      year: new FormControl(null, {validators: [Validators.required, Validators.min(1900), Validators.max(2020)]}),
       mileage: new FormControl(null, {validators: [Validators.required]}),
       description: new FormControl(null, {validators: [Validators.required, Validators.minLength(5)]}),
       price: new FormControl(null, {validators: [Validators.required, Validators.max(10000000)]}),
@@ -102,8 +95,6 @@ export class CarAddComponent implements OnInit {
         this.editMode = 'create';
         this.carId = null;
         console.log('MODE  !@#!@#!@#!@#!@#: ', this.editMode);
-
-        /*this.postId = null;*/
       }
     });
   }
@@ -131,15 +122,11 @@ export class CarAddComponent implements OnInit {
 
   }
   onSaveCar() {
-
     if (this.form.invalid) {
       return;
     }
 
-
     console.log('SAVE CAR WORKING ? ');
-
-   /* this.carService.showSpinner();*/
     if (this.editMode === 'create') {
       this.carService.addCar(this.form.value.name, this.form.value.model, this.form.value.year, this.form.value.mileage, this.form.value.description, this.form.value.price, this.form.value.telephone, this.form.value.image);
     } else {

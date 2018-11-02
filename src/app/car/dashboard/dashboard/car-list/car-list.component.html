@@ -10,7 +10,9 @@
 
 
 
-<div class="carList" *ngIf="cars.length > 0" >
+
+
+<div class="carList" *ngIf="cars.length > 0 && !isLoading" >
   <mat-card  *ngFor="let car of cars"  class="example-card">
 
     <mat-card-header>
@@ -47,21 +49,28 @@
       </div>
 
     </mat-card-header>
-    <mat-card-actions style="">
-      <button  [routerLink]="['/dashboard/car', car.id]" color="accent" mat-button>VIEW</button>
-      <button   [routerLink]="['/dashboard/edit', car.id]" color="accent" mat-button>EDIT</button>
-      <button  color="accent"  (click)="onDelete(car.id)" mat-button>DELETE</button>
-    </mat-card-actions>
+    <div class="button-section">
+      <mat-card-actions>
+        <button  [routerLink]="['/dashboard/car', car.id]" color="accent" mat-button>VIEW</button>
+        <button   [routerLink]="['/dashboard/edit', car.id]" color="accent" mat-button>EDIT</button>
+        <button  color="accent"  (click)="onDelete(car.id)" mat-button>DELETE</button>
+      </mat-card-actions>
+    </div>
+
   </mat-card>
 
 
 
-</div>
 
-<ng-template #carListEmpty>
-  <mat-card  class="example-card">
+
+
+
+
+  <mat-card  *ngIf="cars.length <= 0 && !isLoading" class="example-card">
     <h3 class="carListEmpty">
       CAR LIST EMPTY - ADD A NEW CAR !
     </h3>
   </mat-card>
-</ng-template>
+
+</div>
+

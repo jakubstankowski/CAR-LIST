@@ -15,6 +15,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import {ScrollDispatchModule} from '@angular/cdk/scrolling';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+
+
 
 
 import { AppComponent } from './app.component';
@@ -72,7 +76,8 @@ const appRoutes: Routes = [
     HttpClientModule,
     NgxSpinnerModule,
     ScrollDispatchModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
 
   entryComponents: [
