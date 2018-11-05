@@ -32,7 +32,10 @@
   </mat-card-header>
 
 
-  <img mat-card-image [src]="car?.imagePath" [alt]="car?.name + '' + car?.model">
+  <div class="show-image-asynch" *ngIf="showImageAsynch">
+    <img mat-card-image [src]="car?.imagePath" [alt]="car?.name + '' + car?.model">
+  </div>
+
   <mat-card-content>
     <mat-card style="background-color: #f5f5f5">
       <div class="car-info" >

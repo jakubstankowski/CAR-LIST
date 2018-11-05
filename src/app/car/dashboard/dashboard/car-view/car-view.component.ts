@@ -13,6 +13,7 @@ export class CarViewComponent implements OnInit {
   car: Car;
   public carId = null;
   showTelephoneStatus = false;
+  public showImageAsynch  = false;
 
   constructor(public carService: CarService, public route: ActivatedRoute, private router: Router) {
     console.log('CARS : ', carService.cars);
@@ -24,16 +25,18 @@ export class CarViewComponent implements OnInit {
 
 
   showTelephone(){
-
     this.showTelephoneStatus = true;
   }
 
 
   ngOnInit() {
+    console.log('THIS CAR NG ON INIT : ', this.car);
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-     /* this.carService.showSpinner();*/
+
+     this.carService.showSpinner();
 
       console.log('PARAM MAP VIEW !@#!@# : ', paramMap);
+
 
       this.carId = paramMap.get('carId');
 
@@ -42,6 +45,9 @@ export class CarViewComponent implements OnInit {
         console.log('ID : ', this.carId);
         this.carService.getCar(this.carId).subscribe(carData =>{
           console.log('GET DATA FROM BACKEND : ', carData);
+
+          this.carService.showSpinner();
+
           this.car = {
             id: carData._id,
             name: carData.name,
@@ -53,13 +59,15 @@ export class CarViewComponent implements OnInit {
             telephone: carData.telephone,
             imagePath: carData.imagePath,
           };
+
+          this.showImageAsynch = true;
+
+
           console.log('CAR DATA VIEW !@#!@#!@#!@#  : ', this.car);
         })
 
       } else {
         console.log('NIE MA CAR ID  !');
-
-
       }
 
     });

@@ -2,7 +2,7 @@
   "name": "Car Sales Managment",
   "short_name": "CSM",
   "theme_color": "#3F4447",
-  "background_color": "#fafafa",
+  "background_color": "#3F4447",
   "display": "fullscreen",
   "orientation": "landscape",
   "scope": "/",

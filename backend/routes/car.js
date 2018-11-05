@@ -67,6 +67,7 @@ router.put("/:id",
   (req, res, next) => {
 
     let imagePath = req.body.imagePath;
+    console.log('IMAGE PATH : ', imagePath);
     if (req.file) {
       const url = req.protocol + "://" + req.get("host");
       imagePath = url + "/images/" + req.file.filename
@@ -105,6 +106,7 @@ router.get("", (req, res, next) => {
 router.get("/:id", (req, res, next) => {
   console.log('PARAMS : ', req.params);
   Car.findById(req.params.id).then(car => {
+    console.log('CAR  DATA : ', car);
     if (car) {
       res.status(200).json(car);
     } else {

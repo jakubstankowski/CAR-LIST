@@ -29,8 +29,10 @@ export class CarService {
     this.spinner.show();
     setTimeout(() => {
       this.spinner.hide();
-    }, 500);
+    }, 700);
   }
+
+
 
   getCars() {
     this.http
@@ -41,7 +43,7 @@ export class CarService {
 
 
         return carData.cars.map(car => {
-          console.log('car data get cars : ', car);
+
           return {
             // @ts-ignore
             id: car._id,
@@ -59,7 +61,6 @@ export class CarService {
 
     .subscribe(transformedCars => {
         this.cars = transformedCars;
-        console.log('SUBSCRIPE CARS : ', this.cars);
         this.carsUpdated.next([...this.cars]);
       });
 
@@ -67,7 +68,6 @@ export class CarService {
   }
 
   getCarUpdateListener() {
-    console.log('cars get update listener : ', this.carsUpdated);
     return this.carsUpdated.asObservable();
   }
 
@@ -128,8 +128,10 @@ export class CarService {
 
 
   getCar(id: string) {
-    console.log('GET CAR  GET !#@#!@!#@#!@!#@!#@ ID : ', id);
+
     console.log('CARS : ', this.cars);
+
+
     return this.http.get<{
       _id: string; name: string; model: string,  year: number, mileage: number, description: string , price: number, telephone: number, imagePath: string}>
     ('http://localhost:3000/api/cars/' + id);
